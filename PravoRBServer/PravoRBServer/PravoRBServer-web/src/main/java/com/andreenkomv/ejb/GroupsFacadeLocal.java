@@ -6,7 +6,6 @@
 package com.andreenkomv.ejb;
 
 import com.andreenkomv.hibernate.Groups;
-import java.sql.SQLException;
 import java.util.List;
 
 /**

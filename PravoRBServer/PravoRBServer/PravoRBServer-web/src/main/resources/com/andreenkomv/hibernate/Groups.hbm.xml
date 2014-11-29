@@ -11,8 +11,5 @@
         <property name="name" type="string">
             <column name="name" length="50" not-null="true" />
         </property>
-        <property name="grouprules" type="string">
-            <column name="grouprules" not-null="true" />
-        </property>
     </class>
 </hibernate-mapping>

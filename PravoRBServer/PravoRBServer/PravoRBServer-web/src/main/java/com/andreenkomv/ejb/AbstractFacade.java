@@ -7,11 +7,8 @@ package com.andreenkomv.ejb;
 
 import java.util.List;
 import com.andreenkomv.hibernate.HibernateUtil;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 
 /**
@@ -21,17 +18,18 @@ import org.hibernate.criterion.Projections;
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
-    private Session session;
+    protected Session session;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
         this.session = HibernateUtil.getSessionFactory().openSession();
-        this.session.beginTransaction();
     }
 
     public void create(T entity) {
         try {
+            this.session.beginTransaction();
             session.save(entity);
+            this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -40,7 +38,9 @@ public abstract class AbstractFacade<T> {
     public void edit(T entity) {
         Session session = null;
         try {
+            this.session.beginTransaction();
             session.update(entity);
+            this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -49,7 +49,9 @@ public abstract class AbstractFacade<T> {
     public void remove(T entity) {
         Session session = null;
         try {
+            this.session.beginTransaction();
             session.delete(entity);
+            this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -58,7 +60,9 @@ public abstract class AbstractFacade<T> {
     public T find(int id) {
         T res = null;
         try {
+            this.session.beginTransaction();
             res = (T)session.get(entityClass, id); 
+            this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -68,7 +72,9 @@ public abstract class AbstractFacade<T> {
     public List<T> findAll() {
         List entities = new ArrayList<T>();
         try {
+            this.session.beginTransaction();
             entities = session.createCriteria(entityClass).list(); 
+            this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println("ОШИБКА findAll: "+e.getMessage());
         }
@@ -78,7 +84,9 @@ public abstract class AbstractFacade<T> {
     public int count() {
         Long res = (long) 0;
         try {
-            res = (Long)session.createCriteria(entityClass).setProjection(Projections.rowCount()).uniqueResult();            
+            this.session.beginTransaction();
+            res = (Long)session.createCriteria(entityClass).setProjection(Projections.rowCount()).uniqueResult();  
+            this.session.getTransaction().commit();          
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

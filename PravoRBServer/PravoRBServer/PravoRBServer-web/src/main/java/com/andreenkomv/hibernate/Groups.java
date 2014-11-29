@@ -10,15 +10,13 @@ public class Groups  implements java.io.Serializable {
 
      private Integer id;
      private String name;
-     private String grouprules;
 
     public Groups() {
     }
 
 	
-    public Groups(String name, String grouprules) {
+    public Groups(String name) {
         this.name = name;
-        this.grouprules = grouprules;
     }
    
     public Integer getId() {
@@ -35,14 +33,6 @@ public class Groups  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public String getGrouprules() {
-        return this.grouprules;
-    }
-    
-    public void setGrouprules(String grouprules) {
-        this.grouprules = grouprules;
-    }
-
 }
 
 

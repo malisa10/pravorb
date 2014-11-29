@@ -73,6 +73,13 @@ public class UsersService {
     public void changePassword(@WebParam(name = "id") Integer id, @WebParam(name = "password") String password) {
         ejbRef.changePassword(id, password);
     }
+    
+    @WebMethod(operationName = "changePasswordSecure")
+    @Oneway
+    public void changePasswordSecure(@WebParam(name = "id") Integer id, 
+     @WebParam(name = "oldpassword") String oldpassword, @WebParam(name = "newpassword") String newpassword) {
+        ejbRef.changePasswordSecure(id, oldpassword, newpassword);
+    }
 
     @WebMethod(operationName = "setGroup")
     @Oneway
