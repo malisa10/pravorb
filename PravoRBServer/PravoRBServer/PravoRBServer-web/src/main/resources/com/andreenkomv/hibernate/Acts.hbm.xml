@@ -11,17 +11,5 @@
         <many-to-one name="parts" class="com.andreenkomv.hibernate.Parts" fetch="select">
             <column name="part" not-null="true" />
         </many-to-one>
-        <set name="favoriteses" table="favorites" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="act" not-null="true" />
-            </key>
-            <one-to-many class="com.andreenkomv.hibernate.Favorites" />
-        </set>
-        <set name="histories" table="history" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="act" not-null="true" />
-            </key>
-            <one-to-many class="com.andreenkomv.hibernate.History" />
-        </set>
     </class>
 </hibernate-mapping>

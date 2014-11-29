@@ -14,11 +14,5 @@
         <property name="grouprules" type="string">
             <column name="grouprules" not-null="true" />
         </property>
-        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="group" not-null="true" />
-            </key>
-            <one-to-many class="com.andreenkomv.hibernate.Users" />
-        </set>
     </class>
 </hibernate-mapping>

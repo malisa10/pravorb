@@ -14,11 +14,5 @@
         <property name="name" type="string">
             <column name="name" length="65535" not-null="true" />
         </property>
-        <set name="actses" table="acts" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="part" not-null="true" />
-            </key>
-            <one-to-many class="com.andreenkomv.hibernate.Acts" />
-        </set>
     </class>
 </hibernate-mapping>

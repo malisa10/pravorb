@@ -13,8 +13,6 @@ public class Acts  implements java.io.Serializable {
 
      private Integer id;
      private Parts parts;
-     private Set favoriteses = new HashSet(0);
-     private Set histories = new HashSet(0);
 
     public Acts() {
     }
@@ -22,11 +20,6 @@ public class Acts  implements java.io.Serializable {
 	
     public Acts(Parts parts) {
         this.parts = parts;
-    }
-    public Acts(Parts parts, Set favoriteses, Set histories) {
-       this.parts = parts;
-       this.favoriteses = favoriteses;
-       this.histories = histories;
     }
    
     public Integer getId() {
@@ -43,23 +36,6 @@ public class Acts  implements java.io.Serializable {
     public void setParts(Parts parts) {
         this.parts = parts;
     }
-    public Set getFavoriteses() {
-        return this.favoriteses;
-    }
-    
-    public void setFavoriteses(Set favoriteses) {
-        this.favoriteses = favoriteses;
-    }
-    public Set getHistories() {
-        return this.histories;
-    }
-    
-    public void setHistories(Set histories) {
-        this.histories = histories;
-    }
-
-
-
 
 }
 
