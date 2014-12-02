@@ -6,7 +6,9 @@
 package com.andreenkomv.ejb;
 
 import com.andreenkomv.hibernate.Users;
+import java.util.List;
 import javax.ejb.Stateless;
+import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -29,7 +31,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .uniqueResult();
         this.session.getTransaction().commit();
         if (id > 0) {
-            res = this.find(id);
+            res = this.get(id);
         }
         return res;
     }
@@ -73,5 +75,14 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setLong("groupid", g)
                 .executeUpdate();
         this.session.getTransaction().commit();
+    }
+
+    @Override
+    public List<Users> listUsersOrderByLogin() {
+        this.session.beginTransaction();
+        List<Users> res = (List<Users>)session.createSQLQuery("SELECT * FROM `users` ORDER BY `login`")
+            .setResultTransformer(Transformers.aliasToBean(Users.class)).list();
+        this.session.getTransaction().commit();
+        return res;
     }
 }

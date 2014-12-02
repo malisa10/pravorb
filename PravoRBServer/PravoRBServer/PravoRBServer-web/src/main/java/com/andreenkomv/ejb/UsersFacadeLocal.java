@@ -14,12 +14,11 @@ import java.util.List;
  * @author
  */
 public interface UsersFacadeLocal {
-
-    void create(Users u);
+    Users create(Users u);
     void edit(Users u);
-    void remove(Users u);
-    Users find(int id);
-    List<Users> findAll();
+    void delete(Users u);
+    Users get(int id);
+    List<Users> list();
     int count();
     
     Users authUser(String login, String password);
@@ -27,5 +26,6 @@ public interface UsersFacadeLocal {
     void changePassword(Integer id, String password);
     void changePasswordSecure(Integer id, String oldpassword, String newpassword);
     void setGroup(Integer id, Integer g);
+    List<Users> listUsersOrderByLogin();
     
 }

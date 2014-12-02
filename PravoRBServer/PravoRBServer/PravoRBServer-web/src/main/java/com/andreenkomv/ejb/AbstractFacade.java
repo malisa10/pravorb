@@ -25,7 +25,7 @@ public abstract class AbstractFacade<T> {
         this.session = HibernateUtil.getSessionFactory().openSession();
     }
 
-    public void create(T entity) {
+    public T create(T entity) {
         try {
             this.session.beginTransaction();
             session.save(entity);
@@ -33,6 +33,7 @@ public abstract class AbstractFacade<T> {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        return entity;
     }
 
     public void edit(T entity) {
@@ -46,7 +47,7 @@ public abstract class AbstractFacade<T> {
         }
     }
 
-    public void remove(T entity) {
+    public void delete(T entity) {
         Session session = null;
         try {
             this.session.beginTransaction();
@@ -57,7 +58,7 @@ public abstract class AbstractFacade<T> {
         }
     }
 
-    public T find(int id) {
+    public T get(int id) {
         T res = null;
         try {
             this.session.beginTransaction();
@@ -69,7 +70,7 @@ public abstract class AbstractFacade<T> {
         return res;
     }
 
-    public List<T> findAll() {
+    public List<T> list() {
         List entities = new ArrayList<T>();
         try {
             this.session.beginTransaction();

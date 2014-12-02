@@ -13,10 +13,10 @@ import java.util.List;
  * @author
  */
 public interface GroupsFacadeLocal {
-    void create(Groups g);
+    Groups create(Groups g);
     void edit(Groups g);
-    void remove(Groups g);
-    Groups find(int id);
-    List<Groups> findAll();
+    void delete(Groups g);
+    Groups get(int id);
+    List<Groups> list();
     int count();
 }
