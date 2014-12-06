@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.andreenkomv.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.andreenkomv.com/">
+
+<xs:element name="countHistory" type="tns:countHistory"/>
+
+<xs:element name="countHistoryResponse" type="tns:countHistoryResponse"/>
+
+<xs:element name="createHistory" type="tns:createHistory"/>
+
+<xs:element name="createHistoryResponse" type="tns:createHistoryResponse"/>
+
+<xs:element name="deleteHistory" type="tns:deleteHistory"/>
+
+<xs:element name="editHistory" type="tns:editHistory"/>
+
+<xs:element name="getHistory" type="tns:getHistory"/>
+
+<xs:element name="getHistoryByTexts" type="tns:getHistoryByTexts"/>
+
+<xs:element name="getHistoryByTextsResponse" type="tns:getHistoryByTextsResponse"/>
+
+<xs:element name="getHistoryResponse" type="tns:getHistoryResponse"/>
+
+<xs:element name="listHistory" type="tns:listHistory"/>
+
+<xs:element name="listHistoryByActs" type="tns:listHistoryByActs"/>
+
+<xs:element name="listHistoryByActsResponse" type="tns:listHistoryByActsResponse"/>
+
+<xs:element name="listHistoryByUser" type="tns:listHistoryByUser"/>
+
+<xs:element name="listHistoryByUserResponse" type="tns:listHistoryByUserResponse"/>
+
+<xs:element name="listHistoryResponse" type="tns:listHistoryResponse"/>
+
+<xs:complexType name="listHistoryByActs">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listHistoryByActsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="history">
+<xs:sequence>
+<xs:element name="acts" type="tns:acts" minOccurs="0"/>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="texts" type="tns:texts" minOccurs="0"/>
+<xs:element name="timeEdit" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="users" type="tns:users" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="acts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="parts" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="parent" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="texts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="text" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="users">
+<xs:sequence>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="firstname" type="xs:string" minOccurs="0"/>
+<xs:element name="groups" type="tns:groups" minOccurs="0"/>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="lastname" type="xs:string" minOccurs="0"/>
+<xs:element name="login" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="telephone" type="xs:string" minOccurs="0"/>
+<xs:element name="zipcode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="groups">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listHistory">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createHistory">
+<xs:sequence>
+<xs:element name="l" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistoryByTexts">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistoryByTextsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistory">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteHistory">
+<xs:sequence>
+<xs:element name="l" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="countHistory">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editHistory">
+<xs:sequence>
+<xs:element name="l" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listHistoryByUser">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listHistoryByUserResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

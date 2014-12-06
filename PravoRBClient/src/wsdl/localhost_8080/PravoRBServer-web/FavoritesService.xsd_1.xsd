@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.andreenkomv.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.andreenkomv.com/">
+
+<xs:element name="countFavorites" type="tns:countFavorites"/>
+
+<xs:element name="countFavoritesResponse" type="tns:countFavoritesResponse"/>
+
+<xs:element name="createFavorites" type="tns:createFavorites"/>
+
+<xs:element name="createFavoritesResponse" type="tns:createFavoritesResponse"/>
+
+<xs:element name="deleteFavorites" type="tns:deleteFavorites"/>
+
+<xs:element name="editFavorites" type="tns:editFavorites"/>
+
+<xs:element name="getFavorites" type="tns:getFavorites"/>
+
+<xs:element name="getFavoritesResponse" type="tns:getFavoritesResponse"/>
+
+<xs:element name="listFavorites" type="tns:listFavorites"/>
+
+<xs:element name="listFavoritesResponse" type="tns:listFavoritesResponse"/>
+
+<xs:complexType name="createFavorites">
+<xs:sequence>
+<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="favorites">
+<xs:sequence>
+<xs:element name="acts" type="tns:acts" minOccurs="0"/>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="users" type="tns:users" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="acts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="parts" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="parent" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="users">
+<xs:sequence>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="firstname" type="xs:string" minOccurs="0"/>
+<xs:element name="groups" type="tns:groups" minOccurs="0"/>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="lastname" type="xs:string" minOccurs="0"/>
+<xs:element name="login" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="telephone" type="xs:string" minOccurs="0"/>
+<xs:element name="zipcode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="groups">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createFavoritesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listFavorites">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listFavoritesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:favorites" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editFavorites">
+<xs:sequence>
+<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteFavorites">
+<xs:sequence>
+<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="countFavorites">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countFavoritesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFavorites">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFavoritesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

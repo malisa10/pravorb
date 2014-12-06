@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>PravoRBServer</artifactId>
-    <groupId>com.andreenkomv</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+        <artifactId>PravoRBServer</artifactId>
+        <groupId>com.andreenkomv</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <groupId>com.andreenkomv</groupId>
     <artifactId>PravoRBServer-web</artifactId>
@@ -29,6 +29,11 @@
             <groupId>unknown.binary</groupId>
             <artifactId>hibernate-jpa-2.1-api-1.0.0.Final</artifactId>
             <version>SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.23</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

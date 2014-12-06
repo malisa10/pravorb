@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ss_pravorb?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">test</property>
-    <mapping resource="com/andreenkomv/hibernate/Acts.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/Users.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/Favorites.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/History.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/Parts.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/Groups.hbm.xml"/>
-    <mapping resource="com/andreenkomv/hibernate/Texts.hbm.xml"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ss_pravorb?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8</property>
+        <property name="hibernate.connection.CharSet">utf8</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">test</property>
+        <mapping resource="com/andreenkomv/hibernate/Acts.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/Users.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/Favorites.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/History.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/Parts.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/Groups.hbm.xml"/>
+        <mapping resource="com/andreenkomv/hibernate/Texts.hbm.xml"/>
+    </session-factory>
 </hibernate-configuration>

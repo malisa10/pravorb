@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.andreenkomv.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.andreenkomv.com/">
+
+<xs:element name="countActs" type="tns:countActs"/>
+
+<xs:element name="countActsResponse" type="tns:countActsResponse"/>
+
+<xs:element name="createActs" type="tns:createActs"/>
+
+<xs:element name="createActsResponse" type="tns:createActsResponse"/>
+
+<xs:element name="deleteActs" type="tns:deleteActs"/>
+
+<xs:element name="editActs" type="tns:editActs"/>
+
+<xs:element name="getActs" type="tns:getActs"/>
+
+<xs:element name="getActsByTexts" type="tns:getActsByTexts"/>
+
+<xs:element name="getActsByTextsResponse" type="tns:getActsByTextsResponse"/>
+
+<xs:element name="getActsResponse" type="tns:getActsResponse"/>
+
+<xs:element name="listActs" type="tns:listActs"/>
+
+<xs:element name="listActsByPart" type="tns:listActsByPart"/>
+
+<xs:element name="listActsByPartResponse" type="tns:listActsByPartResponse"/>
+
+<xs:element name="listActsResponse" type="tns:listActsResponse"/>
+
+<xs:complexType name="listActs">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listActsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acts" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="acts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="parts" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="parent" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listActsByPart">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listActsByPartResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acts" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActs">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActsByTexts">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActsByTextsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteActs">
+<xs:sequence>
+<xs:element name="l" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="countActs">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countActsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createActs">
+<xs:sequence>
+<xs:element name="l" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createActsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editActs">
+<xs:sequence>
+<xs:element name="l" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

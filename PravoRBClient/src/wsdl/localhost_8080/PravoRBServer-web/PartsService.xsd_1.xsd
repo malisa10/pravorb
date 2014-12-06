@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.andreenkomv.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.andreenkomv.com/">
+
+<xs:element name="countParts" type="tns:countParts"/>
+
+<xs:element name="countPartsResponse" type="tns:countPartsResponse"/>
+
+<xs:element name="createParts" type="tns:createParts"/>
+
+<xs:element name="createPartsResponse" type="tns:createPartsResponse"/>
+
+<xs:element name="deleteParts" type="tns:deleteParts"/>
+
+<xs:element name="editParts" type="tns:editParts"/>
+
+<xs:element name="getParts" type="tns:getParts"/>
+
+<xs:element name="getPartsResponse" type="tns:getPartsResponse"/>
+
+<xs:element name="listParts" type="tns:listParts"/>
+
+<xs:element name="listPartsByParent" type="tns:listPartsByParent"/>
+
+<xs:element name="listPartsByParentResponse" type="tns:listPartsByParentResponse"/>
+
+<xs:element name="listPartsResponse" type="tns:listPartsResponse"/>
+
+<xs:complexType name="getParts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPartsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parts">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="parent" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createParts">
+<xs:sequence>
+<xs:element name="l" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createPartsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editParts">
+<xs:sequence>
+<xs:element name="l" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listParts">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listPartsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parts" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listPartsByParent">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listPartsByParentResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parts" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteParts">
+<xs:sequence>
+<xs:element name="l" type="tns:parts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="countParts">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countPartsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

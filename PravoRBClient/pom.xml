@@ -43,6 +43,16 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>
@@ -69,6 +79,136 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/ActsService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/ActsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/ActsService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-ActsService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/FavoritesService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/FavoritesService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-FavoritesService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/GroupsService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/GroupsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/GroupsService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-GroupsService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/HistoryService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/HistoryService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-HistoryService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/PartsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PartsService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PartsService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/TextsService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/TextsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/TextsService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-TextsService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/UsersService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/UsersService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/UsersService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-UsersService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml</groupId>
+                        <artifactId>webservices-api</artifactId>
+                        <version>2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+                    <xnocompile>true</xnocompile>
+                    <verbose>true</verbose>
+                    <extension>true</extension>
+                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+                    <!-- Needed with JAXP 1.5 -->
+                    <vmArgs>
+                        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                    </vmArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
