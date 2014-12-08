@@ -73,6 +73,11 @@ public class UsersServiceBean implements UsersServiceBeanLocal {
     }
 
     @Override
+    public void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone) {
+        UsersFacade.setInfo(id, firstname, lastname, email, address, zipcode, telephone);
+    }
+
+    @Override
     public List<Users> listUsersOrderByLogin() {
         return UsersFacade.listUsersOrderByLogin();
     }

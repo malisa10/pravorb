@@ -4,8 +4,11 @@
 <xsd:import namespace="http://ws.andreenkomv.com/" schemaLocation="http://localhost:8080/PravoRBServer-web/UsersService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="changePasswordSecure">
-<part name="parameters" element="tns:changePasswordSecure"/>
+<message name="setInfo">
+<part name="parameters" element="tns:setInfo"/>
+</message>
+<message name="changePassword">
+<part name="parameters" element="tns:changePassword"/>
 </message>
 <message name="listUsersOrderByLogin">
 <part name="parameters" element="tns:listUsersOrderByLogin"/>
@@ -13,38 +16,8 @@
 <message name="listUsersOrderByLoginResponse">
 <part name="parameters" element="tns:listUsersOrderByLoginResponse"/>
 </message>
-<message name="editUsers">
-<part name="parameters" element="tns:editUsers"/>
-</message>
-<message name="deleteUsers">
-<part name="parameters" element="tns:deleteUsers"/>
-</message>
-<message name="createUsers">
-<part name="parameters" element="tns:createUsers"/>
-</message>
-<message name="createUsersResponse">
-<part name="parameters" element="tns:createUsersResponse"/>
-</message>
-<message name="authUser">
-<part name="parameters" element="tns:authUser"/>
-</message>
-<message name="authUserResponse">
-<part name="parameters" element="tns:authUserResponse"/>
-</message>
-<message name="setGroup">
-<part name="parameters" element="tns:setGroup"/>
-</message>
-<message name="listUsers">
-<part name="parameters" element="tns:listUsers"/>
-</message>
-<message name="listUsersResponse">
-<part name="parameters" element="tns:listUsersResponse"/>
-</message>
-<message name="getUsers">
-<part name="parameters" element="tns:getUsers"/>
-</message>
-<message name="getUsersResponse">
-<part name="parameters" element="tns:getUsersResponse"/>
+<message name="changePasswordSecure">
+<part name="parameters" element="tns:changePasswordSecure"/>
 </message>
 <message name="countUsers">
 <part name="parameters" element="tns:countUsers"/>
@@ -52,19 +25,63 @@
 <message name="countUsersResponse">
 <part name="parameters" element="tns:countUsersResponse"/>
 </message>
+<message name="createUsers">
+<part name="parameters" element="tns:createUsers"/>
+</message>
+<message name="createUsersResponse">
+<part name="parameters" element="tns:createUsersResponse"/>
+</message>
+<message name="editUsers">
+<part name="parameters" element="tns:editUsers"/>
+</message>
+<message name="deleteUsers">
+<part name="parameters" element="tns:deleteUsers"/>
+</message>
+<message name="getUsers">
+<part name="parameters" element="tns:getUsers"/>
+</message>
+<message name="getUsersResponse">
+<part name="parameters" element="tns:getUsersResponse"/>
+</message>
+<message name="listUsers">
+<part name="parameters" element="tns:listUsers"/>
+</message>
+<message name="listUsersResponse">
+<part name="parameters" element="tns:listUsersResponse"/>
+</message>
+<message name="setGroup">
+<part name="parameters" element="tns:setGroup"/>
+</message>
+<message name="authUser">
+<part name="parameters" element="tns:authUser"/>
+</message>
+<message name="authUserResponse">
+<part name="parameters" element="tns:authUserResponse"/>
+</message>
 <message name="createUser">
 <part name="parameters" element="tns:createUser"/>
 </message>
-<message name="changePassword">
-<part name="parameters" element="tns:changePassword"/>
-</message>
 <portType name="UsersService">
-<operation name="changePasswordSecure">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/changePasswordSecure" message="tns:changePasswordSecure"/>
+<operation name="setInfo">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/setInfo" message="tns:setInfo"/>
+</operation>
+<operation name="changePassword">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/changePassword" message="tns:changePassword"/>
 </operation>
 <operation name="listUsersOrderByLogin">
 <input wsam:Action="http://ws.andreenkomv.com/UsersService/listUsersOrderByLoginRequest" message="tns:listUsersOrderByLogin"/>
 <output wsam:Action="http://ws.andreenkomv.com/UsersService/listUsersOrderByLoginResponse" message="tns:listUsersOrderByLoginResponse"/>
+</operation>
+<operation name="changePasswordSecure">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/changePasswordSecure" message="tns:changePasswordSecure"/>
+</operation>
+<operation name="countUsers">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/countUsersRequest" message="tns:countUsers"/>
+<output wsam:Action="http://ws.andreenkomv.com/UsersService/countUsersResponse" message="tns:countUsersResponse"/>
+</operation>
+<operation name="createUsers">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/createUsersRequest" message="tns:createUsers"/>
+<output wsam:Action="http://ws.andreenkomv.com/UsersService/createUsersResponse" message="tns:createUsersResponse"/>
 </operation>
 <operation name="editUsers">
 <input wsam:Action="http://ws.andreenkomv.com/UsersService/editUsers" message="tns:editUsers"/>
@@ -72,45 +89,64 @@
 <operation name="deleteUsers">
 <input wsam:Action="http://ws.andreenkomv.com/UsersService/deleteUsers" message="tns:deleteUsers"/>
 </operation>
-<operation name="createUsers">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/createUsersRequest" message="tns:createUsers"/>
-<output wsam:Action="http://ws.andreenkomv.com/UsersService/createUsersResponse" message="tns:createUsersResponse"/>
-</operation>
-<operation name="authUser">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/authUserRequest" message="tns:authUser"/>
-<output wsam:Action="http://ws.andreenkomv.com/UsersService/authUserResponse" message="tns:authUserResponse"/>
-</operation>
-<operation name="setGroup">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/setGroup" message="tns:setGroup"/>
+<operation name="getUsers">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/getUsersRequest" message="tns:getUsers"/>
+<output wsam:Action="http://ws.andreenkomv.com/UsersService/getUsersResponse" message="tns:getUsersResponse"/>
 </operation>
 <operation name="listUsers">
 <input wsam:Action="http://ws.andreenkomv.com/UsersService/listUsersRequest" message="tns:listUsers"/>
 <output wsam:Action="http://ws.andreenkomv.com/UsersService/listUsersResponse" message="tns:listUsersResponse"/>
 </operation>
-<operation name="getUsers">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/getUsersRequest" message="tns:getUsers"/>
-<output wsam:Action="http://ws.andreenkomv.com/UsersService/getUsersResponse" message="tns:getUsersResponse"/>
+<operation name="setGroup">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/setGroup" message="tns:setGroup"/>
 </operation>
-<operation name="countUsers">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/countUsersRequest" message="tns:countUsers"/>
-<output wsam:Action="http://ws.andreenkomv.com/UsersService/countUsersResponse" message="tns:countUsersResponse"/>
+<operation name="authUser">
+<input wsam:Action="http://ws.andreenkomv.com/UsersService/authUserRequest" message="tns:authUser"/>
+<output wsam:Action="http://ws.andreenkomv.com/UsersService/authUserResponse" message="tns:authUserResponse"/>
 </operation>
 <operation name="createUser">
 <input wsam:Action="http://ws.andreenkomv.com/UsersService/createUser" message="tns:createUser"/>
 </operation>
-<operation name="changePassword">
-<input wsam:Action="http://ws.andreenkomv.com/UsersService/changePassword" message="tns:changePassword"/>
-</operation>
 </portType>
 <binding name="UsersServicePortBinding" type="tns:UsersService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="changePasswordSecure">
+<operation name="setInfo">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
+<operation name="changePassword">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
 </input>
 </operation>
 <operation name="listUsersOrderByLogin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="changePasswordSecure">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
+<operation name="countUsers">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="createUsers">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -131,7 +167,7 @@
 <soap:body use="literal"/>
 </input>
 </operation>
-<operation name="createUsers">
+<operation name="getUsers">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -140,7 +176,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="authUser">
+<operation name="listUsers">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -155,25 +191,7 @@
 <soap:body use="literal"/>
 </input>
 </operation>
-<operation name="listUsers">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getUsers">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="countUsers">
+<operation name="authUser">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -183,12 +201,6 @@
 </output>
 </operation>
 <operation name="createUser">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-</operation>
-<operation name="changePassword">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

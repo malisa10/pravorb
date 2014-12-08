@@ -78,6 +78,21 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     }
 
     @Override
+    public void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone) {
+        this.session.beginTransaction();
+        session.createSQLQuery("CALL `pr_user_setinfo`(:id, :firstname, :lastname, :email, :address, :zipcode, :telephone)")
+                .setLong("id", id)
+                .setString("firstname", firstname)
+                .setString("lastname", lastname)
+                .setString("email)", email)
+                .setString("address", address)
+                .setString("zipcode", zipcode)
+                .setString("telephone", telephone)
+                .executeUpdate();
+        this.session.getTransaction().commit();
+    }
+    
+    @Override
     public List<Users> listUsersOrderByLogin() {
         this.session.beginTransaction();
         List<Users> res = (List<Users>)session.createSQLQuery("SELECT * FROM `users` ORDER BY `login`")
@@ -85,4 +100,5 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
         this.session.getTransaction().commit();
         return res;
     }
+
 }

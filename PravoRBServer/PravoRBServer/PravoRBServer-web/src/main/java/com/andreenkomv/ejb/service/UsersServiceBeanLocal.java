@@ -27,5 +27,6 @@ public interface UsersServiceBeanLocal {
     public void changePassword(Integer id, String password);
     public void changePasswordSecure(Integer id, String oldpassword, String newpassword);
     public void setGroup(Integer id, Integer g);
+    void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone);
     public List<Users> listUsersOrderByLogin();
 }

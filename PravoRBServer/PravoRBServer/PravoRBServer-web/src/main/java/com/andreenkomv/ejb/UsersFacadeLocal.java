@@ -26,6 +26,7 @@ public interface UsersFacadeLocal {
     void changePassword(Integer id, String password);
     void changePasswordSecure(Integer id, String oldpassword, String newpassword);
     void setGroup(Integer id, Integer g);
+    void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone);
     List<Users> listUsersOrderByLogin();
     
 }

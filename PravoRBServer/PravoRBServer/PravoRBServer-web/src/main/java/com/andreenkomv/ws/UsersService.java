@@ -84,6 +84,12 @@ public class UsersService {
     public void setGroup(@WebParam(name = "id") Integer id, @WebParam(name = "g") Integer g) {
         ejbRef.setGroup(id, g);
     }
+    
+    @WebMethod(operationName = "setInfo")
+    @Oneway
+    public void setInfo(@WebParam(name = "id") Integer id, @WebParam(name = "firstname") String fisrtname, @WebParam(name = "lastname") String lastname, @WebParam(name = "email") String email, @WebParam(name = "address") String address, @WebParam(name = "zipcode") String zipcode, @WebParam(name = "telephone") String telephone) {
+        ejbRef.setInfo(id, fisrtname, lastname, email, address, zipcode, telephone);
+    }
 
     @WebMethod(operationName = "listUsersOrderByLogin")
     public List<Users> listUsersOrderByLogin() {
