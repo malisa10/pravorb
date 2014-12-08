@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Хост:                         localhost
--- Версия сервера:               5.6.11 - MySQL Community Server (GPL)
--- ОС Сервера:                   Win32
+-- Версия сервера:               5.6.21-log - MySQL Community Server (GPL)
+-- ОС Сервера:                   Win64
 -- HeidiSQL Версия:              9.1.0.4867
 -- --------------------------------------------------------
 
@@ -11,11 +11,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Дамп структуры базы данных ss_pravorb
+DROP DATABASE IF EXISTS `ss_pravorb`;
 CREATE DATABASE IF NOT EXISTS `ss_pravorb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `ss_pravorb`;
 
 
 -- Дамп структуры для таблица ss_pravorb.acts
+DROP TABLE IF EXISTS `acts`;
 CREATE TABLE IF NOT EXISTS `acts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `part` int(10) unsigned NOT NULL,
@@ -24,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `acts` (
   CONSTRAINT `FK__parts` FOREIGN KEY (`part`) REFERENCES `parts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.acts: ~1 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.acts: ~0 rows (приблизительно)
 DELETE FROM `acts`;
 /*!40000 ALTER TABLE `acts` DISABLE KEYS */;
 INSERT INTO `acts` (`id`, `part`) VALUES
@@ -33,6 +35,7 @@ INSERT INTO `acts` (`id`, `part`) VALUES
 
 
 -- Дамп структуры для таблица ss_pravorb.favorites
+DROP TABLE IF EXISTS `favorites`;
 CREATE TABLE IF NOT EXISTS `favorites` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `act` int(10) unsigned NOT NULL DEFAULT '0',
@@ -44,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.favorites: ~1 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.favorites: ~0 rows (приблизительно)
 DELETE FROM `favorites`;
 /*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
 INSERT INTO `favorites` (`id`, `act`, `user`) VALUES
@@ -53,6 +56,7 @@ INSERT INTO `favorites` (`id`, `act`, `user`) VALUES
 
 
 -- Дамп структуры для таблица ss_pravorb.groups
+DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
@@ -70,6 +74,7 @@ INSERT INTO `groups` (`id`, `name`) VALUES
 
 
 -- Дамп структуры для таблица ss_pravorb.history
+DROP TABLE IF EXISTS `history`;
 CREATE TABLE IF NOT EXISTS `history` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `act` int(10) unsigned NOT NULL DEFAULT '0',
@@ -80,12 +85,12 @@ CREATE TABLE IF NOT EXISTS `history` (
   KEY `FK_history_acts` (`act`),
   KEY `FK_history_texts` (`text`),
   KEY `FK_history_users` (`user`),
+  CONSTRAINT `FK_history_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_history_texts` FOREIGN KEY (`text`) REFERENCES `texts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_history_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_history_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_history_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.history: ~1 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.history: ~0 rows (приблизительно)
 DELETE FROM `history`;
 /*!40000 ALTER TABLE `history` DISABLE KEYS */;
 INSERT INTO `history` (`id`, `act`, `text`, `user`, `time_edit`) VALUES
@@ -94,6 +99,7 @@ INSERT INTO `history` (`id`, `act`, `text`, `user`, `time_edit`) VALUES
 
 
 -- Дамп структуры для таблица ss_pravorb.parts
+DROP TABLE IF EXISTS `parts`;
 CREATE TABLE IF NOT EXISTS `parts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent` int(10) unsigned NOT NULL DEFAULT '0',
@@ -136,6 +142,7 @@ INSERT INTO `parts` (`id`, `parent`, `name`) VALUES
 
 
 -- Дамп структуры для функция ss_pravorb.pr_user_auth
+DROP FUNCTION IF EXISTS `pr_user_auth`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` FUNCTION `pr_user_auth`(`login` VARCHAR(50), `password` VARCHAR(50)) RETURNS int(11)
 BEGIN
@@ -153,6 +160,7 @@ DELIMITER ;
 
 
 -- Дамп структуры для процедура ss_pravorb.pr_user_changepassword
+DROP PROCEDURE IF EXISTS `pr_user_changepassword`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_user_changepassword`(IN `id` INT, IN `password` VARCHAR(50))
 BEGIN
@@ -162,6 +170,7 @@ DELIMITER ;
 
 
 -- Дамп структуры для процедура ss_pravorb.pr_user_changepasswordsecure
+DROP PROCEDURE IF EXISTS `pr_user_changepasswordsecure`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_user_changepasswordsecure`(IN `id` INT, IN `oldpassword` VARCHAR(50), IN `newpassword` VARCHAR(50))
 BEGIN
@@ -176,6 +185,7 @@ DELIMITER ;
 
 
 -- Дамп структуры для процедура ss_pravorb.pr_user_create
+DROP PROCEDURE IF EXISTS `pr_user_create`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_user_create`(IN `login` VARCHAR(50), IN `password` VARCHAR(50))
 BEGIN
@@ -185,6 +195,7 @@ DELIMITER ;
 
 
 -- Дамп структуры для процедура ss_pravorb.pr_user_setgroup
+DROP PROCEDURE IF EXISTS `pr_user_setgroup`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_user_setgroup`(IN `id` INT, IN `groupid` INT)
 BEGIN
@@ -193,7 +204,30 @@ END//
 DELIMITER ;
 
 
+-- Дамп структуры для процедура ss_pravorb.pr_user_setinfo
+DROP PROCEDURE IF EXISTS `pr_user_setinfo`;
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_user_setinfo`(IN `id` INT, IN `firstname` TINYTEXT, IN `lastname` TINYTEXT, IN `email` VARCHAR(50), IN `address` TINYTEXT, IN `zipcode` VARCHAR(10), IN `telephone` TINYTEXT)
+BEGIN
+	DECLARE buf int;
+	SELECT (count(*)>0) INTO buf FROM `users` WHERE `users`.`id`=id;
+	IF buf>0 
+		THEN
+			UPDATE `users` SET 
+				`users`.`firstname`=firstname, 
+				`users`.`lastname`=lastname,
+				`users`.`email`=email,
+				`users`.`address`=address,
+				`users`.`zipcode` = zipcode,
+				`users`.`telephone`=telephone				  
+			WHERE `id`=id;
+		END IF;
+END//
+DELIMITER ;
+
+
 -- Дамп структуры для таблица ss_pravorb.texts
+DROP TABLE IF EXISTS `texts`;
 CREATE TABLE IF NOT EXISTS `texts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -201,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `texts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Правовые акты\r\nСтатус: 1 - создан, 0 - для отката';
 
--- Дамп данных таблицы ss_pravorb.texts: ~1 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.texts: ~0 rows (приблизительно)
 DELETE FROM `texts`;
 /*!40000 ALTER TABLE `texts` DISABLE KEYS */;
 INSERT INTO `texts` (`id`, `name`, `text`) VALUES
@@ -210,6 +244,7 @@ INSERT INTO `texts` (`id`, `name`, `text`) VALUES
 
 
 -- Дамп структуры для таблица ss_pravorb.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `login` varchar(20) NOT NULL,
@@ -225,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `login` (`login`),
   KEY `FK_users_groups` (`group`),
   CONSTRAINT `FK_users_groups` FOREIGN KEY (`group`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы ss_pravorb.users: ~3 rows (приблизительно)
 DELETE FROM `users`;
