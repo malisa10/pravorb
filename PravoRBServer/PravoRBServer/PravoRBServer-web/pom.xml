@@ -17,13 +17,15 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <hibernate-entitymanager-version>4.3.1.Final</hibernate-entitymanager-version>
     </properties>
     
-    <dependencies>
+    <dependencies>      
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.1.Final</version>
+            <version>${hibernate-entitymanager-version}</version>
         </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>

@@ -6,6 +6,7 @@
 package com.andreenkomv.pravorbclient.bean;
 
 import com.andreenkomv.ws.Users;
+import java.util.List;
 import javax.ejb.Local;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author Admin
  */
 @Local
-public interface AuthBeanLocal {
+public interface UserBeanLocal {
     public HttpSession getSession();
     public void setSession(HttpSession session);    
     public boolean isAuth();
@@ -25,6 +26,16 @@ public interface AuthBeanLocal {
     public Users Auth(String login, String password);
     public void Register(String login, String password);
     public void SetInfo(String firstname, String lastname, String email, String address, String zipcode, String telephone);
-    public void ChangePasswordSecure(String oldpassword, String newpassword);
+    public void ChangePassword(String oldpassword, String newpassword);
     public void Logout();
+    
+    //Admin
+    public Users getUser(int id);
+    public void Create(String login, String password);
+    public void SetInfo(int id, String firstname, String lastname, String email, String address, String zipcode, String telephone);
+    public void ChangePassword(int id, String newpassword);
+    public void SetGroup(int id, int group);
+    public void Delete(int id);
+    public List<Users> List();
+    
 }

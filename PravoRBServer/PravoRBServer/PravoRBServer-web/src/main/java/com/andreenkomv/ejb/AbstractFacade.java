@@ -61,6 +61,7 @@ public abstract class AbstractFacade<T> {
     public T get(int id) {
         T res = null;
         try {
+            session.clear();
             this.session.beginTransaction();
             res = (T)session.get(entityClass, id); 
             this.session.getTransaction().commit();
@@ -73,6 +74,7 @@ public abstract class AbstractFacade<T> {
     public List<T> list() {
         List entities = new ArrayList<T>();
         try {
+            session.clear();
             this.session.beginTransaction();
             entities = session.createCriteria(entityClass).list(); 
             this.session.getTransaction().commit();
@@ -85,6 +87,7 @@ public abstract class AbstractFacade<T> {
     public int count() {
         Long res = (long) 0;
         try {
+            session.clear();
             this.session.beginTransaction();
             res = (Long)session.createCriteria(entityClass).setProjection(Projections.rowCount()).uniqueResult();  
             this.session.getTransaction().commit();          

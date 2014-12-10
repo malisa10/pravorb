@@ -6,12 +6,13 @@
 package com.andreenkomv.pravorbclient.bean;
 
 import com.andreenkomv.ws.*;
+import java.util.List;
 import javax.ejb.Stateful;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 
 @Stateful
-public class AuthBean implements AuthBeanLocal {
+public class UserBean implements UserBeanLocal {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/PravoRBServer-web/UsersService.wsdl")
     private UsersService_Service service;    
     
@@ -51,6 +52,24 @@ public class AuthBean implements AuthBeanLocal {
     public Users getUser() {
         if (this.isAuth()) {
             int id = ((Users) session.getAttribute("user")).getId();
+            try { // Call Web Service Operation
+                UsersService port = service.getUsersServicePort();
+                // TODO process result here
+                Users result = port.getUsers(id);
+                result.setPassword(null);
+                return result;
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+    
+        @Override
+    public Users getUser(int id) {
+        if (this.isAdmin()) {
             try { // Call Web Service Operation
                 UsersService port = service.getUsersServicePort();
                 // TODO process result here
@@ -106,6 +125,12 @@ public class AuthBean implements AuthBeanLocal {
                 int id = ((Users) session.getAttribute("user")).getId();
                 port.setInfo(id, firstname, lastname, email, address, zipcode, telephone);
                 Users user = port.getUsers(id);
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setAddress(address);
+                user.setZipcode(zipcode);
+                user.setTelephone(telephone);
                 user.setPassword(null);
                 session.setAttribute("user", user);
             }
@@ -115,7 +140,7 @@ public class AuthBean implements AuthBeanLocal {
     }
 
     @Override
-    public void ChangePasswordSecure(String oldpassword, String newpassword) {
+    public void ChangePassword(String oldpassword, String newpassword) {
         try {
             int id = 0;
             if (this.isAuth()) {
@@ -133,5 +158,80 @@ public class AuthBean implements AuthBeanLocal {
     @Override
     public void Logout() {
         session.setAttribute("user", null);
+    }
+
+    @Override
+    public void Create(String login, String password) {
+        try { // Call Web Service Operation
+            UsersService port = service.getUsersServicePort();
+            if (this.isAdmin()) {
+                port.createUser(login, password);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void SetInfo(int id, String firstname, String lastname, String email, String address, String zipcode, String telephone) {
+        try { // Call Web Service Operation
+            UsersService port = service.getUsersServicePort();
+            if (this.isAdmin()) {
+                port.setInfo(id, firstname, lastname, email, address, zipcode, telephone);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void ChangePassword(int id, String newpassword) {
+        try {
+            if (this.isAdmin()) {
+                UsersService port = service.getUsersServicePort();
+                port.changePassword(id, newpassword);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void SetGroup(int id, int group) {
+        try {
+            if (this.isAdmin()) {
+                UsersService port = service.getUsersServicePort();
+                port.setGroup(id, group);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void Delete(int id) {
+        try {
+            if (this.isAdmin()) {
+                UsersService port = service.getUsersServicePort();
+                Users user = port.getUsers(id);
+                port.deleteUsers(user);
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<Users> List() {
+        List<Users> users = null;
+        try {
+            if (this.isAdmin()) {
+                UsersService port = service.getUsersServicePort();
+                users = port.listUsersOrderByLogin();
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return users;
     }
 }

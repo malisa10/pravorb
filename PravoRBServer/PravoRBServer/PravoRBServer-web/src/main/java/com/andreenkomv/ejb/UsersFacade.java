@@ -8,6 +8,7 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.Users;
 import java.util.List;
 import javax.ejb.Stateless;
+import org.hibernate.criterion.Order;
 import org.hibernate.transform.Transformers;
 
 /**
@@ -16,14 +17,15 @@ import org.hibernate.transform.Transformers;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLocal {
-
+    
     public UsersFacade() {
         super(Users.class);
     }
 
     @Override
-    public Users authUser(String login, String password) {
+    public Users authUser(String login, String password) {       
         Users res = null;
+        session.clear();
         this.session.beginTransaction();
         int id = (Integer) session.createSQLQuery("SELECT `pr_user_auth`(:login, :password)")
                 .setString("login", login)
@@ -78,13 +80,13 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     }
 
     @Override
-    public void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone) {
+    public void setInfo(Integer id, String firstname, String lastname, String email, String address, String zipcode, String telephone) {    
         this.session.beginTransaction();
         session.createSQLQuery("CALL `pr_user_setinfo`(:id, :firstname, :lastname, :email, :address, :zipcode, :telephone)")
                 .setLong("id", id)
                 .setString("firstname", firstname)
                 .setString("lastname", lastname)
-                .setString("email)", email)
+                .setString("email", email)
                 .setString("address", address)
                 .setString("zipcode", zipcode)
                 .setString("telephone", telephone)
@@ -94,9 +96,9 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     
     @Override
     public List<Users> listUsersOrderByLogin() {
+        session.clear();
         this.session.beginTransaction();
-        List<Users> res = (List<Users>)session.createSQLQuery("SELECT * FROM `users` ORDER BY `login`")
-            .setResultTransformer(Transformers.aliasToBean(Users.class)).list();
+        List<Users> res = (List<Users>)session.createCriteria(Users.class).addOrder(Order.asc("login")).list();
         this.session.getTransaction().commit();
         return res;
     }
