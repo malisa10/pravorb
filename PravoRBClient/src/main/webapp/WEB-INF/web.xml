@@ -4,6 +4,14 @@
         <servlet-name>favorites</servlet-name>
         <servlet-class>com.andreenkomv.pravorbclient.servlets.favorites</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>part</servlet-name>
+        <servlet-class>com.andreenkomv.pravorbclient.servlets.part</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>act</servlet-name>
+        <servlet-class>com.andreenkomv.pravorbclient.servlets.act</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>favorites</servlet-name>
         <url-pattern>/favorites</url-pattern>
@@ -16,7 +24,7 @@
         <servlet-name>user</servlet-name>
         <url-pattern>/user</url-pattern>
     </servlet-mapping>
-        <servlet>
+    <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>com.andreenkomv.pravorbclient.servlets.index</servlet-class>
     </servlet>
@@ -27,9 +35,21 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>part</servlet-name>
+        <url-pattern>/part</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>act</servlet-name>
+        <url-pattern>/act</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
 </web-app>

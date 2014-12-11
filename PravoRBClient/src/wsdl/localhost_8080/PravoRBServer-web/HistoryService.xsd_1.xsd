@@ -32,6 +32,10 @@
 
 <xs:element name="listHistoryResponse" type="tns:listHistoryResponse"/>
 
+<xs:element name="listLastActsHistoryByPart" type="tns:listLastActsHistoryByPart"/>
+
+<xs:element name="listLastActsHistoryByPartResponse" type="tns:listLastActsHistoryByPartResponse"/>
+
 <xs:complexType name="listHistoryByActs">
 <xs:sequence>
 <xs:element name="id" type="xs:int"/>
@@ -121,18 +125,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getHistoryByTexts">
-<xs:sequence>
-<xs:element name="id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getHistoryByTextsResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:history" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getHistory">
 <xs:sequence>
 <xs:element name="id" type="xs:int" minOccurs="0"/>
@@ -140,6 +132,18 @@
 </xs:complexType>
 
 <xs:complexType name="getHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistoryByTexts">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHistoryByTextsResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:history" minOccurs="0"/>
 </xs:sequence>
@@ -158,6 +162,18 @@
 <xs:complexType name="countHistoryResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listLastActsHistoryByPart">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listLastActsHistoryByPartResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

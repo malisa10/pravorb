@@ -64,4 +64,9 @@ public class HistoryServiceBean implements HistoryServiceBeanLocal {
     public History getHistoryByTexts(int id) {
         return HistoryFacade.getHistoryByTexts(id);
     }
+
+    @Override
+    public List<History> listLastActsHistoryByPart(int id) {
+        return HistoryFacade.listLastActsHistoryByPart(id);
+    }
 }

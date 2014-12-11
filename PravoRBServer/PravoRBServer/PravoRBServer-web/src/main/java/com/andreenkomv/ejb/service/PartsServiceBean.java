@@ -54,4 +54,9 @@ public class PartsServiceBean implements PartsServiceBeanLocal {
     public List<Parts> listPartsByParent(int id) {
         return PartsFacade.listPartsByParent(id);
     }
+
+    @Override
+    public void deletePartsById(int id) {
+        PartsFacade.delete(id);
+    }
 }

@@ -9,7 +9,7 @@
     <input required type="text" name="address" value="${user_info.getAddress()}">
     <input required type="text" name="zipcode" value="${user_info.getZipcode()}">
     <input required type="text" name="telephone" value="${user_info.getTelephone()}">
-    <a href="<%=host%>/user?action=changepassword">Сменить пароль</a>
+    <a class="btn btn-large btn-inverse" href="<%=host%>/user?action=changepassword${link_changepassword}">Сменить пароль</a>
     <input class="btn btn-large btn-primary"  type="submit" value="Сохранить">
     <span class="error">${error}</span>
 </form>

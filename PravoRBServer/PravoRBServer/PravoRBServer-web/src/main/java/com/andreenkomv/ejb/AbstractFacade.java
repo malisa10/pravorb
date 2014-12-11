@@ -16,7 +16,7 @@ import org.hibernate.criterion.Projections;
  * @author
  */
 public abstract class AbstractFacade<T> {
-
+    
     private Class<T> entityClass;
     protected Session session;
 
@@ -27,41 +27,47 @@ public abstract class AbstractFacade<T> {
 
     public T create(T entity) {
         try {
+            session.clear();
             this.session.beginTransaction();
             session.save(entity);
             this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        } finally {
+            session.clear();
         }
         return entity;
     }
 
     public void edit(T entity) {
-        Session session = null;
         try {
+            session.clear();
             this.session.beginTransaction();
             session.update(entity);
             this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        } finally {
+            session.clear();
         }
     }
 
     public void delete(T entity) {
-        Session session = null;
         try {
+            session.clear();
             this.session.beginTransaction();
             session.delete(entity);
             this.session.getTransaction().commit();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        } finally {
+            session.clear();
         }
     }
-
+    
     public T get(int id) {
         T res = null;
         try {
-            session.clear();
             this.session.beginTransaction();
             res = (T)session.get(entityClass, id); 
             this.session.getTransaction().commit();
@@ -74,7 +80,6 @@ public abstract class AbstractFacade<T> {
     public List<T> list() {
         List entities = new ArrayList<T>();
         try {
-            session.clear();
             this.session.beginTransaction();
             entities = session.createCriteria(entityClass).list(); 
             this.session.getTransaction().commit();
@@ -87,7 +92,6 @@ public abstract class AbstractFacade<T> {
     public int count() {
         Long res = (long) 0;
         try {
-            session.clear();
             this.session.beginTransaction();
             res = (Long)session.createCriteria(entityClass).setProjection(Projections.rowCount()).uniqueResult();  
             this.session.getTransaction().commit();          

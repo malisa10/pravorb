@@ -5,9 +5,9 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
+import com.andreenkomv.pravorbclient.bean.HistoryBeanLocal;
 import com.andreenkomv.pravorbclient.bean.UserBeanLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class favorites extends HttpServlet {
+public class act extends HttpServlet {
     @EJB
     private UserBeanLocal userBean;
-
-
+    @EJB
+    private HistoryBeanLocal historyBean;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -37,8 +37,11 @@ public class favorites extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         userBean.setSession(request.getSession());
-        if (userBean.isAuth()) {
-            
+        if ((action != null) && (action.equals("show"))) {
+            String historyid = request.getParameter("history");
+            if (historyid!=null) {
+                
+            }
         }
     }
 
@@ -53,7 +56,7 @@ public class favorites extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     /**

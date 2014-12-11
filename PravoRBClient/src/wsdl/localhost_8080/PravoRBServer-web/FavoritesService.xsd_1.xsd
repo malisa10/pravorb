@@ -12,11 +12,19 @@
 
 <xs:element name="editFavorites" type="tns:editFavorites"/>
 
+<xs:element name="getByUserAndAct" type="tns:getByUserAndAct"/>
+
+<xs:element name="getByUserAndActResponse" type="tns:getByUserAndActResponse"/>
+
 <xs:element name="getFavorites" type="tns:getFavorites"/>
 
 <xs:element name="getFavoritesResponse" type="tns:getFavoritesResponse"/>
 
 <xs:element name="listFavorites" type="tns:listFavorites"/>
+
+<xs:element name="listFavoritesByUser" type="tns:listFavoritesByUser"/>
+
+<xs:element name="listFavoritesByUserResponse" type="tns:listFavoritesByUserResponse"/>
 
 <xs:element name="listFavoritesResponse" type="tns:listFavoritesResponse"/>
 
@@ -77,6 +85,12 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="editFavorites">
+<xs:sequence>
+<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="listFavorites">
 <xs:sequence/>
 </xs:complexType>
@@ -87,15 +101,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="editFavorites">
+<xs:complexType name="deleteFavorites">
 <xs:sequence>
 <xs:element name="l" type="tns:favorites" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="deleteFavorites">
+<xs:complexType name="listFavoritesByUser">
 <xs:sequence>
-<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+<xs:element name="user" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listFavoritesByUserResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:favorites" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -106,6 +126,19 @@
 <xs:complexType name="countFavoritesResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getByUserAndAct">
+<xs:sequence>
+<xs:element name="user" type="xs:int"/>
+<xs:element name="act" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getByUserAndActResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:favorites" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

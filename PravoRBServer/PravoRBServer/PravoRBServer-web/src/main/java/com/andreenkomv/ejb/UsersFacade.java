@@ -46,6 +46,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setString("password", password)
                 .executeUpdate();
         this.session.getTransaction().commit();
+        session.clear();
     }
 
     @Override
@@ -56,6 +57,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setString("password", password)
                 .executeUpdate();
         this.session.getTransaction().commit();
+        session.clear();
     }
 
     @Override
@@ -67,6 +69,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setString("newpassword", newpassword)
                 .executeUpdate();
         this.session.getTransaction().commit();
+        session.clear();
     }
 
     @Override
@@ -77,6 +80,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setLong("groupid", g)
                 .executeUpdate();
         this.session.getTransaction().commit();
+        session.clear();
     }
 
     @Override
@@ -92,11 +96,11 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
                 .setString("telephone", telephone)
                 .executeUpdate();
         this.session.getTransaction().commit();
+        session.clear();
     }
     
     @Override
     public List<Users> listUsersOrderByLogin() {
-        session.clear();
         this.session.beginTransaction();
         List<Users> res = (List<Users>)session.createCriteria(Users.class).addOrder(Order.asc("login")).list();
         this.session.getTransaction().commit();

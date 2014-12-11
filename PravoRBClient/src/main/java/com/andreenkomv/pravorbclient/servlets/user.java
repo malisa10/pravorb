@@ -5,10 +5,10 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
+import com.andreenkomv.peavorbclient.helpers.HTMLHelper;
 import com.andreenkomv.pravorbclient.bean.UserBeanLocal;
 import com.andreenkomv.ws.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -24,32 +24,6 @@ public class user extends HttpServlet {
 
     @EJB
     private UserBeanLocal userBean;
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet user</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet user at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -85,11 +59,13 @@ public class user extends HttpServlet {
             if ((user != null) && userBean.isAdmin()) {
                     Users user_info = userBean.getUser(Integer.valueOf(user));
                     request.setAttribute("user_info", user_info);
+                    request.setAttribute("link_changepassword", "&user="+user_info.getId());
                     request.getRequestDispatcher("/user_info.jsp").forward(request, response);                
             } else {
                 if (userBean.isAuth()) {
                     Users user_info = userBean.getUser();
                     request.setAttribute("user_info", user_info);
+                    request.setAttribute("link_changepassword", "");
                     request.getRequestDispatcher("/user_info.jsp").forward(request, response);
                 } else {
                     response.sendRedirect(request.getContextPath() + "/user?action=login");
@@ -104,7 +80,8 @@ public class user extends HttpServlet {
             }
         } else if ((action != null) && (action.equals("list")) && userBean.isAdmin()) {
             List<Users> users = userBean.List();
-            request.setAttribute("users", users);
+            request.setAttribute("headers", HTMLHelper.getUsersListHeader());
+            request.setAttribute("rows", HTMLHelper.getUsersListValues(users, request.getContextPath()));
             request.getRequestDispatcher("/user_list.jsp").forward(request, response);
         } else if ((action != null) && (action.equals("create")) && userBean.isAdmin()) {
             request.getRequestDispatcher("/user_create.jsp").forward(request, response);
@@ -118,7 +95,7 @@ public class user extends HttpServlet {
             userBean.SetGroup(Integer.valueOf(user), Integer.valueOf(group));
             response.sendRedirect(request.getContextPath() + "/user?action=list");
         } else {
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
 
     }
@@ -205,6 +182,8 @@ public class user extends HttpServlet {
                 userBean.Create(login, password);
                 response.sendRedirect(request.getContextPath() + "/user?action=list");
             }
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 

@@ -4,12 +4,6 @@
 <xsd:import namespace="http://ws.andreenkomv.com/" schemaLocation="http://localhost:8080/PravoRBServer-web/PartsService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="listPartsByParent">
-<part name="parameters" element="tns:listPartsByParent"/>
-</message>
-<message name="listPartsByParentResponse">
-<part name="parameters" element="tns:listPartsByParentResponse"/>
-</message>
 <message name="createParts">
 <part name="parameters" element="tns:createParts"/>
 </message>
@@ -34,17 +28,22 @@
 <message name="countPartsResponse">
 <part name="parameters" element="tns:countPartsResponse"/>
 </message>
+<message name="listPartsByParent">
+<part name="parameters" element="tns:listPartsByParent"/>
+</message>
+<message name="listPartsByParentResponse">
+<part name="parameters" element="tns:listPartsByParentResponse"/>
+</message>
 <message name="getParts">
 <part name="parameters" element="tns:getParts"/>
 </message>
 <message name="getPartsResponse">
 <part name="parameters" element="tns:getPartsResponse"/>
 </message>
+<message name="deletePartsById">
+<part name="parameters" element="tns:deletePartsById"/>
+</message>
 <portType name="PartsService">
-<operation name="listPartsByParent">
-<input wsam:Action="http://ws.andreenkomv.com/PartsService/listPartsByParentRequest" message="tns:listPartsByParent"/>
-<output wsam:Action="http://ws.andreenkomv.com/PartsService/listPartsByParentResponse" message="tns:listPartsByParentResponse"/>
-</operation>
 <operation name="createParts">
 <input wsam:Action="http://ws.andreenkomv.com/PartsService/createPartsRequest" message="tns:createParts"/>
 <output wsam:Action="http://ws.andreenkomv.com/PartsService/createPartsResponse" message="tns:createPartsResponse"/>
@@ -63,22 +62,20 @@
 <input wsam:Action="http://ws.andreenkomv.com/PartsService/countPartsRequest" message="tns:countParts"/>
 <output wsam:Action="http://ws.andreenkomv.com/PartsService/countPartsResponse" message="tns:countPartsResponse"/>
 </operation>
+<operation name="listPartsByParent">
+<input wsam:Action="http://ws.andreenkomv.com/PartsService/listPartsByParentRequest" message="tns:listPartsByParent"/>
+<output wsam:Action="http://ws.andreenkomv.com/PartsService/listPartsByParentResponse" message="tns:listPartsByParentResponse"/>
+</operation>
 <operation name="getParts">
 <input wsam:Action="http://ws.andreenkomv.com/PartsService/getPartsRequest" message="tns:getParts"/>
 <output wsam:Action="http://ws.andreenkomv.com/PartsService/getPartsResponse" message="tns:getPartsResponse"/>
 </operation>
+<operation name="deletePartsById">
+<input wsam:Action="http://ws.andreenkomv.com/PartsService/deletePartsById" message="tns:deletePartsById"/>
+</operation>
 </portType>
 <binding name="PartsServicePortBinding" type="tns:PartsService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="listPartsByParent">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="createParts">
 <soap:operation soapAction=""/>
 <input>
@@ -118,6 +115,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="listPartsByParent">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getParts">
 <soap:operation soapAction=""/>
 <input>
@@ -126,6 +132,12 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="deletePartsById">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
 </operation>
 </binding>
 <service name="PartsService">

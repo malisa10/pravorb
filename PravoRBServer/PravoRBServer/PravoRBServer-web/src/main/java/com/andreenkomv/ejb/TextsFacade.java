@@ -7,7 +7,6 @@ package com.andreenkomv.ejb;
 
 import com.andreenkomv.hibernate.Texts;
 import javax.ejb.Stateless;
-import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -31,10 +30,10 @@ public class TextsFacade extends AbstractFacade<Texts> implements TextsFacadeLoc
                         + "WHERE `acts`.`id`=:id "
                         + "ORDER BY `history`.`time_edit` "
                         + "LIMIT 1")
-                .setLong("id", id)
-            .setResultTransformer(Transformers.aliasToBean(Texts.class)).uniqueResult();
+                .addEntity(Texts.class)
+                .setLong("id", id).uniqueResult();
         this.session.getTransaction().commit();
         return res;
     }
-    
+   
 }

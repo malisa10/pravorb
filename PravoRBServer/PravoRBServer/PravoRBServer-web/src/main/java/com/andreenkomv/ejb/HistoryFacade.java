@@ -8,7 +8,6 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.History;
 import java.util.List;
 import javax.ejb.Stateless;
-import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -24,9 +23,9 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
     @Override
     public List<History> listHistoryByActs(int id) {
         this.session.beginTransaction();
-        List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `act`=:act LIMIT 1")
-                .setLong("act", id)
-            .setResultTransformer(Transformers.aliasToBean(History.class)).list();
+        List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `act`=:act")                
+                .addEntity(History.class)
+                .setLong("act", id).list();
         this.session.getTransaction().commit();
         return res;
     }
@@ -34,9 +33,9 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
     @Override
     public List<History> listHistoryByUser(int id) {
         this.session.beginTransaction();
-        List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `user`=:user LIMIT 1")
-                .setLong("user", id)
-            .setResultTransformer(Transformers.aliasToBean(History.class)).list();
+        List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `user`=:user")
+                .addEntity(History.class)
+                .setLong("user", id).list();
         this.session.getTransaction().commit();
         return res;
     }
@@ -50,8 +49,20 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
                         + "LEFT JOIN `history` ON `texts`.`id`=`history`.`text` "
                         + "WHERE `texts`.`id`=:id "
                         + "LIMIT 1")
-                .setLong("id", id)
-            .setResultTransformer(Transformers.aliasToBean(History.class)).uniqueResult();
+                .addEntity(History.class)
+                .setLong("id", id).uniqueResult();
+        this.session.getTransaction().commit();
+        return res;
+    }
+
+    @Override
+    public List<History> listLastActsHistoryByPart(int id) {
+        this.session.beginTransaction();
+        List<History> res = (List<History>)session.createSQLQuery("SELECT * "
+                + "FROM `last_acts` "
+                + "WHERE `last_acts`.`part`=:part")
+                .addEntity(History.class)
+                .setLong("part", id).list();
         this.session.getTransaction().commit();
         return res;
     }

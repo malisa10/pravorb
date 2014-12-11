@@ -17,4 +17,5 @@ public interface PartsFacadeLocal {
     int count();
     
     List<Parts> listPartsByParent(int id);
+    void delete(int id);
 }

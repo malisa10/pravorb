@@ -8,7 +8,6 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.Acts;
 import java.util.List;
 import javax.ejb.Stateless;
-import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -24,9 +23,9 @@ public class ActsFacade extends AbstractFacade<Acts> implements ActsFacadeLocal 
     @Override
     public List<Acts> listActsByPart(int id) {
         this.session.beginTransaction();
-        List<Acts> res = (List<Acts>)session.createSQLQuery("SELECT * FROM `acts` WHERE `part`=:part ORDER BY `name`")
-                .setLong("parent", id)
-            .setResultTransformer(Transformers.aliasToBean(Acts.class)).list();
+        List<Acts> res = (List<Acts>)session.createSQLQuery("SELECT * FROM `acts` WHERE `part`=:part")                
+                .addEntity(Acts.class)
+                .setLong("part", id).list();
         this.session.getTransaction().commit();
         return res;
     }
@@ -41,8 +40,8 @@ public class ActsFacade extends AbstractFacade<Acts> implements ActsFacadeLocal 
                         + "LEFT JOIN `acts` ON `acts`.`id`=`history`.`act` "
                         + "WHERE `texts`.`id`=:id "
                         + "LIMIT 1")
-                .setLong("id", id)
-            .setResultTransformer(Transformers.aliasToBean(Acts.class)).uniqueResult();
+                .addEntity(Acts.class)
+                .setLong("id", id).uniqueResult();
         this.session.getTransaction().commit();
         return res;
     }

@@ -8,7 +8,6 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.Parts;
 import java.util.List;
 import javax.ejb.Stateless;
-import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -27,10 +26,22 @@ public class PartsFacade extends AbstractFacade<Parts>  implements PartsFacadeLo
     @Override
     public List<Parts> listPartsByParent(int id) {
         this.session.beginTransaction();
-        List<Parts> res = (List<Parts>)session.createSQLQuery("SELECT * FROM `parts` WHERE `parent`=:parent ORDER BY `name`")
-                .setLong("parent", id)
-            .setResultTransformer(Transformers.aliasToBean(Parts.class)).list();
+        List<Parts> res = (List<Parts>)session.createSQLQuery("SELECT * FROM `parts` WHERE `parent`=:parent ORDER BY `id`")
+                .addEntity(Parts.class)
+                .setLong("parent", id).list();
         this.session.getTransaction().commit();
         return res;
+    }
+
+    @Override
+    public void delete(int id) {
+        Parts part = this.get(id);
+        List<Parts> parts = this.listPartsByParent(id);
+        if (parts.size()>0) {
+            for (Parts daughterpart: parts) {
+                this.delete(daughterpart.getId());
+            }
+        }
+        this.delete(part);
     }
 }

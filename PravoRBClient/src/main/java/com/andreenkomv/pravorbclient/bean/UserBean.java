@@ -47,6 +47,21 @@ public class UserBean implements UserBeanLocal {
     public boolean isAdmin() {
         return (session.getAttribute("user") != null && ((Users) session.getAttribute("user")).getGroups().getId() == 1);
     }
+    
+        @Override
+    public boolean isUserRights() {
+        return (session.getAttribute("user") != null && ((Users) session.getAttribute("user")).getGroups().getId() <= 3);
+    }
+
+    @Override
+    public boolean isModeratorRights() {
+        return (session.getAttribute("user") != null && ((Users) session.getAttribute("user")).getGroups().getId() <= 2);
+    }
+
+    @Override
+    public boolean isAdminRights() {
+        return (session.getAttribute("user") != null && ((Users) session.getAttribute("user")).getGroups().getId() == 1);
+    }
 
     @Override
     public Users getUser() {

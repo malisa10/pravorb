@@ -19,4 +19,7 @@ public interface FavoritesFacadeLocal {
     Favorites get(int id);
     List<Favorites> list();
     int count();
+    
+    List<Favorites> listFavoritesByUser(int user);
+    Favorites getByUserAndAct(int user, int act);
 }

@@ -5,8 +5,12 @@
  */
 package com.andreenkomv.ejb;
 
+import com.andreenkomv.hibernate.Acts;
 import com.andreenkomv.hibernate.Favorites;
+import com.andreenkomv.hibernate.Users;
+import java.util.List;
 import javax.ejb.Stateless;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -21,4 +25,25 @@ public class FavoritesFacade  extends AbstractFacade<Favorites> implements Favor
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public List<Favorites> listFavoritesByUser(int user) {
+        this.session.beginTransaction();
+        List<Favorites> res = (List<Favorites>)session.createCriteria(Favorites.class)
+                .add(Restrictions.eq("users",session.load(Users.class, user)))
+                .list();
+        this.session.getTransaction().commit();
+        return res;
+    }
+
+    @Override
+    public Favorites getByUserAndAct(int user, int act) {
+        this.session.beginTransaction();
+        Favorites res = (Favorites)session.createCriteria(Favorites.class)
+                .add(Restrictions.eq("acts", session.load(Acts.class, act)))
+                .add(Restrictions.and(Restrictions.eq("users",session.load(Users.class, user))))
+                .uniqueResult();
+        this.session.getTransaction().commit();
+        return res;
+    }
 }

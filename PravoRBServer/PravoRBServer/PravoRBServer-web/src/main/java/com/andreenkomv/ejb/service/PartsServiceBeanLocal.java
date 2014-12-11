@@ -22,5 +22,6 @@ public interface PartsServiceBeanLocal {
     public List<Parts> listParts();
     public int countParts();
     
-    public List<Parts> listPartsByParent(int id);    
+    public List<Parts> listPartsByParent(int id);  
+    public void deletePartsById(int id); 
 }

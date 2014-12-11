@@ -16,7 +16,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author Honaht
+ * @author Admin
  */
 @WebService(serviceName = "PartsService")
 public class PartsService {
@@ -59,6 +59,12 @@ public class PartsService {
     @WebMethod(operationName = "listPartsByParent")
     public List<Parts> listPartsByParent(@WebParam(name = "id") int id) {
         return ejbRef.listPartsByParent(id);
+    }
+
+    @WebMethod(operationName = "deletePartsById")
+    @Oneway
+    public void deletePartsById(@WebParam(name = "id") int id) {
+        ejbRef.deletePartsById(id);
     }
     
 }

@@ -106,21 +106,6 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/FavoritesService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/FavoritesService.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-FavoritesService</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
                                 <wsdlFile>localhost_8080/PravoRBServer-web/GroupsService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.andreenkomv.ws</packageName>
@@ -128,36 +113,6 @@
                             <staleFile>${project.build.directory}/jaxws/stale/GroupsService.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-GroupsService</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/HistoryService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/HistoryService.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-HistoryService</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/PartsService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PartsService.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-PartsService</id>
                         <phase>generate-sources</phase>
                     </execution>
                     <execution>
@@ -188,6 +143,51 @@
                             <staleFile>${project.build.directory}/jaxws/stale/UsersService.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-UsersService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/FavoritesService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/FavoritesService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-FavoritesService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/HistoryService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/HistoryService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-HistoryService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/PartsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PartsService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PartsService</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

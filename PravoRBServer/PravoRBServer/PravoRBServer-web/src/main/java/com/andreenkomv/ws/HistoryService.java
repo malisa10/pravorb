@@ -16,7 +16,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author Honaht
+ * @author Admin
  */
 @WebService(serviceName = "HistoryService")
 public class HistoryService {
@@ -64,6 +64,11 @@ public class HistoryService {
     @WebMethod(operationName = "listHistoryByUser")
     public List<History> listHistoryByUser(@WebParam(name = "id") int id) {
         return ejbRef.listHistoryByUser(id);
+    }
+
+    @WebMethod(operationName = "listLastActsHistoryByPart")
+    public List<History> listLastActsHistoryByPart(@WebParam(name = "id") int id) {
+        return ejbRef.listLastActsHistoryByPart(id);
     }
 
     @WebMethod(operationName = "getHistoryByTexts")

@@ -20,8 +20,11 @@ public interface UserBeanLocal {
     public void setSession(HttpSession session);    
     public boolean isAuth();
     public boolean isUser();
+    public boolean isUserRights();
     public boolean isModerator();
+    public boolean isModeratorRights();
     public boolean isAdmin();
+    public boolean isAdminRights();
     public Users getUser();
     public Users Auth(String login, String password);
     public void Register(String login, String password);

@@ -16,7 +16,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author Honaht
+ * @author Admin
  */
 @WebService(serviceName = "FavoritesService")
 public class FavoritesService {
@@ -54,6 +54,16 @@ public class FavoritesService {
     @WebMethod(operationName = "countFavorites")
     public int countFavorites() {
         return ejbRef.countFavorites();
+    }
+
+    @WebMethod(operationName = "listFavoritesByUser")
+    public List<Favorites> listFavoritesByUser(@WebParam(name = "user") int user) {
+        return ejbRef.listFavoritesByUser(user);
+    }
+
+    @WebMethod(operationName = "getByUserAndAct")
+    public Favorites getByUserAndAct(@WebParam(name = "user") int user, @WebParam(name = "act") int act) {
+        return ejbRef.getByUserAndAct(user, act);
     }
     
 }
