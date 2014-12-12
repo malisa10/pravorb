@@ -65,6 +65,25 @@ public class history extends HttpServlet {
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
+        } else if ((action != null) && (action.equals("show"))) {
+            String historyid = request.getParameter("history");
+            if (historyid!=null) {
+                History history = historyBean.getHistory(Integer.valueOf(historyid));
+                request.setAttribute("history", history);
+                request.setAttribute("timeedit", HTMLHelper.XMLGregorianCalendarToString(history.getTimeEdit()));
+                request.setAttribute("access",userBean.isModeratorRights());
+                request.getRequestDispatcher("/history_show.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
+        } else if ((action != null) && (action.equals("delete")) && userBean.isModeratorRights()) {
+            String _history = request.getParameter("history");
+            if (_history != null) {
+                historyBean.delete(Integer.valueOf(_history));
+                response.sendRedirect(request.getHeader("referer"));
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
         }
     }
 

@@ -65,5 +65,10 @@ public class ActsService {
     public Acts getActsByTexts(@WebParam(name = "id") int id) {
         return ejbRef.getActsByTexts(id);
     }
+
+    @WebMethod(operationName = "getActsInFavorites")
+    public boolean getActsInFavorites(@WebParam(name = "act") int act, @WebParam(name = "user") int user) {
+        return ejbRef.getActsInFavorites(act, user);
+    }
     
 }

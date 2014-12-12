@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="/WEB-INF/mytags.tld" prefix="mytag"%>
 <% String host = request.getContextPath(); %>
 <jsp:include page="header.jsp" />
 <h3 style="display:inline">${history.getTexts().getName()}</h3>&nbsp;&nbsp;[<a href="<%=host%>/history?action=list&act=${history.getActs().getId()}">История изменений</a>]</span><br/>

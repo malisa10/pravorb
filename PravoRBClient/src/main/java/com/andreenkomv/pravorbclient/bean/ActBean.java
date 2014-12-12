@@ -57,4 +57,18 @@ public class ActBean implements ActBeanLocal {
         }
         return result;
     }
+
+    @Override
+    public boolean inFavorites(int act, int user) {
+        boolean result = false;
+        try { // Call Web Service Operation
+            ActsService port = service.getActsServicePort();
+            result = port.getActsInFavorites(act, user);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    
+    
 }

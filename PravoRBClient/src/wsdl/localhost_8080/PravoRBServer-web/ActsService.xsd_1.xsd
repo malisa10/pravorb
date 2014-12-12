@@ -18,6 +18,10 @@
 
 <xs:element name="getActsByTextsResponse" type="tns:getActsByTextsResponse"/>
 
+<xs:element name="getActsInFavorites" type="tns:getActsInFavorites"/>
+
+<xs:element name="getActsInFavoritesResponse" type="tns:getActsInFavoritesResponse"/>
+
 <xs:element name="getActsResponse" type="tns:getActsResponse"/>
 
 <xs:element name="listActs" type="tns:listActs"/>
@@ -114,6 +118,19 @@
 <xs:complexType name="createActsResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:acts" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActsInFavorites">
+<xs:sequence>
+<xs:element name="act" type="xs:int"/>
+<xs:element name="user" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getActsInFavoritesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

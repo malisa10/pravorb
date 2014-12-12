@@ -40,6 +40,10 @@
 
 <xs:element name="listLastActsHistoryByPartResponse" type="tns:listLastActsHistoryByPartResponse"/>
 
+<xs:element name="listLastActsHistoryByUserFavorites" type="tns:listLastActsHistoryByUserFavorites"/>
+
+<xs:element name="listLastActsHistoryByUserFavoritesResponse" type="tns:listLastActsHistoryByUserFavoritesResponse"/>
+
 <xs:complexType name="listHistoryByActs">
 <xs:sequence>
 <xs:element name="id" type="xs:int"/>
@@ -119,16 +123,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listHistory">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listHistoryResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="createHistory">
 <xs:sequence>
 <xs:element name="l" type="tns:history" minOccurs="0"/>
@@ -138,6 +132,16 @@
 <xs:complexType name="createHistoryResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:history" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listHistory">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listHistoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -206,6 +210,18 @@
 </xs:complexType>
 
 <xs:complexType name="listHistoryByUserResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listLastActsHistoryByUserFavorites">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listLastActsHistoryByUserFavoritesResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:history" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>

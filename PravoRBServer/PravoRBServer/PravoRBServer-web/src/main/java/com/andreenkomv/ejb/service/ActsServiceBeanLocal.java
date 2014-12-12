@@ -24,4 +24,5 @@ public interface ActsServiceBeanLocal {
     
     public List<Acts> listActsByPart(int id);   
     public Acts getActsByTexts(int id);
+    public boolean getActsInFavorites(int act, int user);
 }

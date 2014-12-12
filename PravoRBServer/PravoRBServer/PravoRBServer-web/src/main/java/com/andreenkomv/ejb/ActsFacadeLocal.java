@@ -22,4 +22,5 @@ public interface ActsFacadeLocal {
     
     List<Acts> listActsByPart(int id);
     Acts getActsByTexts(int id);
+    boolean inFavorites(int act, int user);
 }

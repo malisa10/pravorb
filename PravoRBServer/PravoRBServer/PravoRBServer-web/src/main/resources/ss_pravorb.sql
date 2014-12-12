@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Хост:                         veress.ddns.net
+-- Хост:                         localhost
 -- Версия сервера:               5.6.21-log - MySQL Community Server (GPL)
 -- ОС Сервера:                   Win64
 -- HeidiSQL Версия:              9.1.0.4867
@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS `acts` (
   PRIMARY KEY (`id`),
   KEY `FK__parts` (`part`),
   CONSTRAINT `FK__parts` FOREIGN KEY (`part`) REFERENCES `parts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.acts: ~1 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.acts: ~2 rows (приблизительно)
 DELETE FROM `acts`;
 /*!40000 ALTER TABLE `acts` DISABLE KEYS */;
 INSERT INTO `acts` (`id`, `part`) VALUES
 	(1, 11),
-	(2, 11);
+	(5, 11);
 /*!40000 ALTER TABLE `acts` ENABLE KEYS */;
 
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `FK_favorites_users` (`user`),
   CONSTRAINT `FK_favorites_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы ss_pravorb.favorites: ~0 rows (приблизительно)
 DELETE FROM `favorites`;
@@ -85,16 +85,18 @@ CREATE TABLE IF NOT EXISTS `history` (
   CONSTRAINT `FK_history_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_history_texts` FOREIGN KEY (`text`) REFERENCES `texts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_history_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.history: ~3 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.history: ~6 rows (приблизительно)
 DELETE FROM `history`;
 /*!40000 ALTER TABLE `history` DISABLE KEYS */;
 INSERT INTO `history` (`id`, `act`, `text`, `user`, `time_edit`) VALUES
 	(2, 1, 1, 1, '2014-11-28 17:00:28'),
 	(3, 1, 2, 1, '2014-12-11 03:26:55'),
-	(4, 2, 3, 1, '2014-12-11 03:32:21'),
-	(5, 2, 4, 1, '2014-12-11 03:32:38');
+	(10, 5, 13, 1, '2014-12-12 07:33:39'),
+	(11, 5, 14, 1, '2014-12-12 07:35:06'),
+	(12, 5, 15, 1, '2014-12-12 08:03:26'),
+	(13, 1, 16, 1, '2014-12-12 10:52:42');
 /*!40000 ALTER TABLE `history` ENABLE KEYS */;
 
 
@@ -106,7 +108,15 @@ CREATE TABLE `last_acts` (
 	`part` INT(10) UNSIGNED NOT NULL,
 	`text` INT(10) UNSIGNED NOT NULL,
 	`user` INT(10) UNSIGNED NULL,
-	`time_edit` TIMESTAMP NULL
+	`time_edit` TIMESTAMP NOT NULL
+) ENGINE=MyISAM;
+
+
+-- Дамп структуры для представление ss_pravorb.last_histories
+-- Создание временной таблицы для обработки ошибок зависимостей представлений
+CREATE TABLE `last_histories` (
+	`id` INT(10) UNSIGNED NULL,
+	`act` INT(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM;
 
 
@@ -118,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `parts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='Разделы Национального реестра правовых актов РБ';
 
--- Дамп данных таблицы ss_pravorb.parts: ~26 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.parts: ~27 rows (приблизительно)
 DELETE FROM `parts`;
 /*!40000 ALTER TABLE `parts` DISABLE KEYS */;
 INSERT INTO `parts` (`id`, `parent`, `name`) VALUES
@@ -150,6 +160,23 @@ INSERT INTO `parts` (`id`, `parent`, `name`) VALUES
 	(26, 9, 'Решения, принятые областным, Минским городским, районным, городским (городов областного подчинения) референдумом'),
 	(27, 10, 'Другие нормативные акты');
 /*!40000 ALTER TABLE `parts` ENABLE KEYS */;
+
+
+-- Дамп структуры для функция ss_pravorb.pr_act_infavorites
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` FUNCTION `pr_act_infavorites`(`act` INT, `user` INT) RETURNS tinyint(4)
+BEGIN
+	DECLARE buf int;
+	SELECT COUNT(*) INTO buf FROM favorites WHERE favorites.act=act AND favorites.user=user;
+	IF buf=0 
+		THEN
+			return buf;
+		ELSE
+			SELECT favorites.id INTO buf FROM favorites WHERE favorites.act=act AND favorites.user=user;
+			return buf;
+		END IF;
+END//
+DELIMITER ;
 
 
 -- Дамп структуры для функция ss_pravorb.pr_user_auth
@@ -237,16 +264,19 @@ CREATE TABLE IF NOT EXISTS `texts` (
   `name` text NOT NULL,
   `text` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Правовые акты\r\nСтатус: 1 - создан, 0 - для отката';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Правовые акты\r\nСтатус: 1 - создан, 0 - для отката';
 
--- Дамп данных таблицы ss_pravorb.texts: ~4 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.texts: ~7 rows (приблизительно)
 DELETE FROM `texts`;
 /*!40000 ALTER TABLE `texts` DISABLE KEYS */;
 INSERT INTO `texts` (`id`, `name`, `text`) VALUES
 	(1, 'Текст конституции РБ', 'КОНСТИТУЦИЯ ЗДЕСЬ!'),
 	(2, 'Вторая редакция конст', 'ЗДЕСЬ ЗДЕСЬ!!!'),
-	(3, 'Первая редакция второго тома', '1'),
-	(4, 'Вторая редакция', '2');
+	(12, 'Новая статья', 'Статья'),
+	(13, 'Вторая статья первая редакция', 'ывывпывп'),
+	(14, 'Вторая статья вторая редакция', 'вторая'),
+	(15, 'Вторая статья третья редакция', 'третья'),
+	(16, 'Текст конституции РБ', 'КОНСТИТУЦИЯ ЗДЕСЬ!');
 /*!40000 ALTER TABLE `texts` ENABLE KEYS */;
 
 
@@ -281,7 +311,7 @@ INSERT INTO `users` (`id`, `login`, `password`, `firstname`, `lastname`, `email`
 -- Дамп структуры для триггер ss_pravorb.history_after_delete
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `history_after_delete` AFTER DELETE ON `history` FOR EACH ROW BEGIN
+CREATE TRIGGER `history_after_delete` BEFORE DELETE ON `history` FOR EACH ROW BEGIN
 	DELETE FROM texts WHERE OLD.text=texts.id;
 END//
 DELIMITER ;
@@ -291,10 +321,18 @@ SET SQL_MODE=@OLDTMP_SQL_MODE;
 -- Дамп структуры для представление ss_pravorb.last_acts
 -- Удаление временной таблицы и создание окончательной структуры представления
 DROP TABLE IF EXISTS `last_acts`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`veress`@`%` VIEW `last_acts` AS SELECT history.id, history.act, acts.part, history.text, history.user, MAX(history.time_edit) as time_edit
+CREATE ALGORITHM=UNDEFINED DEFINER=`veress`@`%` VIEW `last_acts` AS SELECT history.id, history.act, acts.part, history.text, history.user, history.time_edit
 FROM history
 INNER JOIN acts ON acts.id = history.act
-WHERE acts.part=11
+WHERE history.id IN (SELECT last_histories.id FROM last_histories)
+GROUP BY history.act ;
+
+
+-- Дамп структуры для представление ss_pravorb.last_histories
+-- Удаление временной таблицы и создание окончательной структуры представления
+DROP TABLE IF EXISTS `last_histories`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`veress`@`%` VIEW `last_histories` AS SELECT MAX(history.id) AS id, history.act 
+FROM history
 GROUP BY history.act ;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

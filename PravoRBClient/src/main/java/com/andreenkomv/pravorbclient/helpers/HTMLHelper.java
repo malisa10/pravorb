@@ -5,6 +5,7 @@
  */
 package com.andreenkomv.pravorbclient.helpers;
 
+import com.andreenkomv.pravorbclient.bean.ActBeanLocal;
 import com.andreenkomv.ws.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class HTMLHelper {
         return values;
     }
     
-    public static List<List<String>> getActsListValues(List<History> histories, String host, int access) {
+    public static List<List<String>> getActsListValues(List<History> histories, String host, int access, ActBeanLocal actBean, Users user) {
         List<List<String>> values = new ArrayList<>();
         for (History history : histories) {
             List<String> row = new ArrayList<>();
@@ -102,6 +103,8 @@ public class HTMLHelper {
             historyMap.put("act", history.getActs().getId().toString());
             td += " ["+getCustomHref(host, "history", historyMap, "История")+"]";
             
+            
+            
             if (access < 3) {
                 td += " (";                
                 Map<String, String> editMap = new HashMap<>();
@@ -111,6 +114,16 @@ public class HTMLHelper {
                 td += " | ";
                 td += getDeleteLink(host, "act", history.getActs().getId());
                 td +=")";
+            }
+            row.add(td);
+            
+            td="";
+            if (user!=null && user.getGroups().getId()<=3) {
+                if (!actBean.inFavorites(history.getActs().getId(), user.getId())) {
+                    td += "<a class='btn btn-success' href='"+host+"/favorites?action=create&act="+history.getActs().getId()+"' alt='В изранное'>+</a>";
+                } else {
+                    td += "<a class='btn btn-danger' href='"+host+"/favorites?action=delete&act="+history.getActs().getId()+"' alt='Из избранного'>-</a>";
+                }
             }
             row.add(td);
 

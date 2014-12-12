@@ -22,6 +22,7 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
 
     @Override
     public List<History> listHistoryByActs(int id) {
+        session.clear();
         this.session.beginTransaction();
         List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `act`=:act")                
                 .addEntity(History.class)
@@ -32,6 +33,7 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
 
     @Override
     public List<History> listHistoryByUser(int id) {
+        session.clear();
         this.session.beginTransaction();
         List<History> res = (List<History>)session.createSQLQuery("SELECT * FROM `history` WHERE `user`=:user")
                 .addEntity(History.class)
@@ -57,6 +59,7 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
 
     @Override
     public List<History> listLastActsHistoryByPart(int id) {
+        session.clear();
         this.session.beginTransaction();
         List<History> res = (List<History>)session.createSQLQuery("SELECT * "
                 + "FROM `last_acts` "
@@ -75,6 +78,19 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
                 + "WHERE `last_acts`.`act`=:act")
                 .addEntity(History.class)
                 .setLong("act", id).uniqueResult();
+        this.session.getTransaction().commit();
+        return res;
+    }
+
+    @Override
+    public List<History> listLastActsHistoryByUserFavorites(int id) {
+        session.clear();
+        this.session.beginTransaction();
+        List<History> res = (List<History>)session.createSQLQuery("SELECT * "
+                + "FROM `last_acts` "
+                + "WHERE `last_acts`.`act` IN (SELECT DISTINCT `favorites`.`act` FROM `favorites` WHERE `favorites`.`user`=:user);")
+                .addEntity(History.class)
+                .setLong("user", id).list();
         this.session.getTransaction().commit();
         return res;
     }

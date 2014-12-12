@@ -5,17 +5,16 @@
  */
 package com.andreenkomv.pravorbclient.bean;
 
-import com.andreenkomv.ws.*;
+import com.andreenkomv.ws.Acts;
+import com.andreenkomv.ws.Users;
 import javax.ejb.Local;
 
 /**
  *
- * @author Admin
+ * @author Honaht
  */
 @Local
-public interface ActBeanLocal {
-    public Acts create(Parts part);
-    public Acts get(int id);
-    public void delete(int id);
-    public boolean inFavorites(int act, int user);
+public interface FavoriteBeanLocal {
+    public void create(Acts act, Users user);
+    public void delete(Acts act, Users user);
 }

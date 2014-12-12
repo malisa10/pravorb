@@ -4,6 +4,24 @@
 <xsd:import namespace="http://ws.andreenkomv.com/" schemaLocation="http://localhost:8080/PravoRBServer-web/HistoryService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="listLastActsHistoryByUserFavorites">
+<part name="parameters" element="tns:listLastActsHistoryByUserFavorites"/>
+</message>
+<message name="listLastActsHistoryByUserFavoritesResponse">
+<part name="parameters" element="tns:listLastActsHistoryByUserFavoritesResponse"/>
+</message>
+<message name="createHistory">
+<part name="parameters" element="tns:createHistory"/>
+</message>
+<message name="createHistoryResponse">
+<part name="parameters" element="tns:createHistoryResponse"/>
+</message>
+<message name="getHistory">
+<part name="parameters" element="tns:getHistory"/>
+</message>
+<message name="getHistoryResponse">
+<part name="parameters" element="tns:getHistoryResponse"/>
+</message>
 <message name="listHistory">
 <part name="parameters" element="tns:listHistory"/>
 </message>
@@ -19,38 +37,8 @@
 <message name="editHistory">
 <part name="parameters" element="tns:editHistory"/>
 </message>
-<message name="getHistory">
-<part name="parameters" element="tns:getHistory"/>
-</message>
-<message name="getHistoryResponse">
-<part name="parameters" element="tns:getHistoryResponse"/>
-</message>
 <message name="deleteHistory">
 <part name="parameters" element="tns:deleteHistory"/>
-</message>
-<message name="createHistory">
-<part name="parameters" element="tns:createHistory"/>
-</message>
-<message name="createHistoryResponse">
-<part name="parameters" element="tns:createHistoryResponse"/>
-</message>
-<message name="listLastActsHistoryByPart">
-<part name="parameters" element="tns:listLastActsHistoryByPart"/>
-</message>
-<message name="listLastActsHistoryByPartResponse">
-<part name="parameters" element="tns:listLastActsHistoryByPartResponse"/>
-</message>
-<message name="listHistoryByUser">
-<part name="parameters" element="tns:listHistoryByUser"/>
-</message>
-<message name="listHistoryByUserResponse">
-<part name="parameters" element="tns:listHistoryByUserResponse"/>
-</message>
-<message name="getHistoryByTexts">
-<part name="parameters" element="tns:getHistoryByTexts"/>
-</message>
-<message name="getHistoryByTextsResponse">
-<part name="parameters" element="tns:getHistoryByTextsResponse"/>
 </message>
 <message name="listHistoryByActs">
 <part name="parameters" element="tns:listHistoryByActs"/>
@@ -58,13 +46,43 @@
 <message name="listHistoryByActsResponse">
 <part name="parameters" element="tns:listHistoryByActsResponse"/>
 </message>
+<message name="listHistoryByUser">
+<part name="parameters" element="tns:listHistoryByUser"/>
+</message>
+<message name="listHistoryByUserResponse">
+<part name="parameters" element="tns:listHistoryByUserResponse"/>
+</message>
 <message name="getLastHistoryByActs">
 <part name="parameters" element="tns:getLastHistoryByActs"/>
 </message>
 <message name="getLastHistoryByActsResponse">
 <part name="parameters" element="tns:getLastHistoryByActsResponse"/>
 </message>
+<message name="listLastActsHistoryByPart">
+<part name="parameters" element="tns:listLastActsHistoryByPart"/>
+</message>
+<message name="listLastActsHistoryByPartResponse">
+<part name="parameters" element="tns:listLastActsHistoryByPartResponse"/>
+</message>
+<message name="getHistoryByTexts">
+<part name="parameters" element="tns:getHistoryByTexts"/>
+</message>
+<message name="getHistoryByTextsResponse">
+<part name="parameters" element="tns:getHistoryByTextsResponse"/>
+</message>
 <portType name="HistoryService">
+<operation name="listLastActsHistoryByUserFavorites">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByUserFavoritesRequest" message="tns:listLastActsHistoryByUserFavorites"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByUserFavoritesResponse" message="tns:listLastActsHistoryByUserFavoritesResponse"/>
+</operation>
+<operation name="createHistory">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/createHistoryRequest" message="tns:createHistory"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/createHistoryResponse" message="tns:createHistoryResponse"/>
+</operation>
+<operation name="getHistory">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryRequest" message="tns:getHistory"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryResponse" message="tns:getHistoryResponse"/>
+</operation>
 <operation name="listHistory">
 <input wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryRequest" message="tns:listHistory"/>
 <output wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryResponse" message="tns:listHistoryResponse"/>
@@ -76,40 +94,59 @@
 <operation name="editHistory">
 <input wsam:Action="http://ws.andreenkomv.com/HistoryService/editHistory" message="tns:editHistory"/>
 </operation>
-<operation name="getHistory">
-<input wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryRequest" message="tns:getHistory"/>
-<output wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryResponse" message="tns:getHistoryResponse"/>
-</operation>
 <operation name="deleteHistory">
 <input wsam:Action="http://ws.andreenkomv.com/HistoryService/deleteHistory" message="tns:deleteHistory"/>
-</operation>
-<operation name="createHistory">
-<input wsam:Action="http://ws.andreenkomv.com/HistoryService/createHistoryRequest" message="tns:createHistory"/>
-<output wsam:Action="http://ws.andreenkomv.com/HistoryService/createHistoryResponse" message="tns:createHistoryResponse"/>
-</operation>
-<operation name="listLastActsHistoryByPart">
-<input wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByPartRequest" message="tns:listLastActsHistoryByPart"/>
-<output wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByPartResponse" message="tns:listLastActsHistoryByPartResponse"/>
-</operation>
-<operation name="listHistoryByUser">
-<input wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByUserRequest" message="tns:listHistoryByUser"/>
-<output wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByUserResponse" message="tns:listHistoryByUserResponse"/>
-</operation>
-<operation name="getHistoryByTexts">
-<input wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryByTextsRequest" message="tns:getHistoryByTexts"/>
-<output wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryByTextsResponse" message="tns:getHistoryByTextsResponse"/>
 </operation>
 <operation name="listHistoryByActs">
 <input wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByActsRequest" message="tns:listHistoryByActs"/>
 <output wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByActsResponse" message="tns:listHistoryByActsResponse"/>
 </operation>
+<operation name="listHistoryByUser">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByUserRequest" message="tns:listHistoryByUser"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/listHistoryByUserResponse" message="tns:listHistoryByUserResponse"/>
+</operation>
 <operation name="getLastHistoryByActs">
 <input wsam:Action="http://ws.andreenkomv.com/HistoryService/getLastHistoryByActsRequest" message="tns:getLastHistoryByActs"/>
 <output wsam:Action="http://ws.andreenkomv.com/HistoryService/getLastHistoryByActsResponse" message="tns:getLastHistoryByActsResponse"/>
 </operation>
+<operation name="listLastActsHistoryByPart">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByPartRequest" message="tns:listLastActsHistoryByPart"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/listLastActsHistoryByPartResponse" message="tns:listLastActsHistoryByPartResponse"/>
+</operation>
+<operation name="getHistoryByTexts">
+<input wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryByTextsRequest" message="tns:getHistoryByTexts"/>
+<output wsam:Action="http://ws.andreenkomv.com/HistoryService/getHistoryByTextsResponse" message="tns:getHistoryByTextsResponse"/>
+</operation>
 </portType>
 <binding name="HistoryServicePortBinding" type="tns:HistoryService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="listLastActsHistoryByUserFavorites">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="createHistory">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getHistory">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="listHistory">
 <soap:operation soapAction=""/>
 <input>
@@ -134,31 +171,13 @@
 <soap:body use="literal"/>
 </input>
 </operation>
-<operation name="getHistory">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="deleteHistory">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
 </input>
 </operation>
-<operation name="createHistory">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listLastActsHistoryByPart">
+<operation name="listHistoryByActs">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -176,25 +195,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getHistoryByTexts">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listHistoryByActs">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getLastHistoryByActs">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listLastActsHistoryByPart">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getHistoryByTexts">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

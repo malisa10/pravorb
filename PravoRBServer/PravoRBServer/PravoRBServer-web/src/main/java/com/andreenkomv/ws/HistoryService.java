@@ -71,6 +71,11 @@ public class HistoryService {
         return ejbRef.listLastActsHistoryByPart(id);
     }
 
+    @WebMethod(operationName = "listLastActsHistoryByUserFavorites")
+    public List<History> listLastActsHistoryByUserFavorites(@WebParam(name = "id") int id) {
+        return ejbRef.listLastActsHistoryByUserFavorites(id);
+    }
+
     @WebMethod(operationName = "getHistoryByTexts")
     public History getHistoryByTexts(@WebParam(name = "id") int id) {
         return ejbRef.getHistoryByTexts(id);

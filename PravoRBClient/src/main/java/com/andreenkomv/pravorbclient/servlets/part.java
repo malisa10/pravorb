@@ -5,6 +5,7 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
+import com.andreenkomv.pravorbclient.bean.ActBeanLocal;
 import com.andreenkomv.pravorbclient.helpers.HTMLHelper;
 import com.andreenkomv.pravorbclient.bean.HistoryBeanLocal;
 import com.andreenkomv.pravorbclient.bean.PartBeanLocal;
@@ -29,6 +30,8 @@ public class part extends HttpServlet {
     private PartBeanLocal partBean;
     @EJB
     private HistoryBeanLocal historyBean;
+    @EJB
+    private ActBeanLocal actBean;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,7 +69,7 @@ public class part extends HttpServlet {
             request.setAttribute("headersParts", headersParts);
             request.setAttribute("rowsParts", HTMLHelper.getPartsListValues(rowsParts, request.getContextPath(),access));
             if (lastEditionActs!=null) {
-                request.setAttribute("rowsActs", HTMLHelper.getActsListValues(lastEditionActs, request.getContextPath(),access));                
+                request.setAttribute("rowsActs", HTMLHelper.getActsListValues(lastEditionActs, request.getContextPath(),access, actBean, userBean.getUser()));                
             }
             request.getRequestDispatcher("/part_list.jsp").forward(request, response);
             

@@ -8,6 +8,7 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.Acts;
 import java.util.List;
 import javax.ejb.Stateless;
+import org.hibernate.Query;
 
 /**
  *
@@ -43,6 +44,22 @@ public class ActsFacade extends AbstractFacade<Acts> implements ActsFacadeLocal 
                 .addEntity(Acts.class)
                 .setLong("id", id).uniqueResult();
         this.session.getTransaction().commit();
+        return res;
+    }
+
+    @Override
+    public boolean inFavorites(int act, int user) {
+        boolean res = false;
+        session.clear();
+        this.session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT `pr_act_infavorites`(:act, :user)")
+                .setLong("act", act)
+                .setLong("user", user);
+        String id = query.uniqueResult().toString();
+        this.session.getTransaction().commit();
+        if (Integer.valueOf(id) > 0) {
+            res = true;
+        }
         return res;
     }
 }

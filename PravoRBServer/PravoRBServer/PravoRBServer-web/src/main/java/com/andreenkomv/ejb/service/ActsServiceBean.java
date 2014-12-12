@@ -59,6 +59,11 @@ public class ActsServiceBean implements ActsServiceBeanLocal {
     public Acts getActsByTexts(int id) {
         return ActsFacade.getActsByTexts(id);
     }
+
+    @Override
+    public boolean getActsInFavorites(int act, int user) {
+        return ActsFacade.inFavorites(act, user);
+    }
     
     
 }
