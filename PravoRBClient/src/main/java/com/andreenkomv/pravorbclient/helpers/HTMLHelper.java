@@ -118,6 +118,28 @@ public class HTMLHelper {
         }
         return values;
     }
+    
+    public static List<List<String>> getHistoryListValues(List<History> histories, String host, int access) {
+        List<List<String>> values = new ArrayList<>();
+        for (History history : histories) {
+            List<String> row = new ArrayList<>();
+            
+            Map<String, String> showMap = new HashMap<>();
+            showMap.put("action", "show");
+            showMap.put("history", history.getId().toString());
+            String td =XMLGregorianCalendarToString(history.getTimeEdit())+" ["+history.getUsers().getLogin()+"] : <b>"+ getCustomHref(host, "history", showMap, history.getTexts().getName())+"</b>";
+            
+            if (access < 3) {
+                td += " (";
+                td += getDeleteLink(host, "history", history.getId());
+                td +=")";
+            }
+            row.add(td);
+
+            values.add(row);
+        }
+        return values;
+    }
 //HREFS    
 
     public static String getInfoLink(String host, String servlet, Integer id) {
@@ -229,7 +251,7 @@ public class HTMLHelper {
         /*SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm");
         String sdate = sdf.format(date.toGregorianCalendar(TimeZone.getTimeZone("GMT+3"),new Locale("rus"),date).getTime());
         return sdate;*/
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         GregorianCalendar gc = date.toGregorianCalendar();
         String sdate = sdf.format(gc.getTime());
         System.out.println(sdate);

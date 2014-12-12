@@ -18,6 +18,7 @@ public interface HistoryBeanLocal {
 
     public History create(Acts act, Texts text, Users user);
     public List<History> getLastActsHistoryByPart(int id);
+    public List<History> listHistoryByActs(int id);
     public History getHistory(int id);
     public History getLastHistoryByActs(int id);
 }

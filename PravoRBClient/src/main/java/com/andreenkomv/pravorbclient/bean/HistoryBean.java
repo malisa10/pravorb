@@ -75,4 +75,17 @@ public class HistoryBean implements HistoryBeanLocal {
         }
         return result;
     }
+
+    @Override
+    public List<History> listHistoryByActs(int id) {
+        List<History> result = null;
+        try { // Call Web Service Operation
+            HistoryService port = service.getHistoryServicePort();
+            // TODO process result here
+            result = port.listHistoryByActs(id);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }
 }

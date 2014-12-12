@@ -5,8 +5,12 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
+import com.andreenkomv.pravorbclient.bean.HistoryBeanLocal;
 import com.andreenkomv.pravorbclient.bean.UserBeanLocal;
+import com.andreenkomv.pravorbclient.helpers.HTMLHelper;
+import com.andreenkomv.ws.History;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 public class history extends HttpServlet {
     @EJB
     private UserBeanLocal userBean;
+    @EJB
+    private HistoryBeanLocal historyBean;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,7 +51,20 @@ public class history extends HttpServlet {
         String action = request.getParameter("action");
         userBean.setSession(request.getSession());
         if ((action != null) && (action.equals("list"))) {
-            
+            String _act = request.getParameter("act");
+            if (_act != null) {
+                List<History> histories = historyBean.listHistoryByActs(Integer.valueOf(_act));
+                int access = 999;
+                if (userBean.isAuth()) {
+                    access = userBean.getUser().getGroups().getId();
+                } else {
+                    access = 4;
+                }
+                request.setAttribute("histories", HTMLHelper.getHistoryListValues(histories, request.getContextPath(), access));
+                request.getRequestDispatcher("/history_list.jsp").forward(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
         }
     }
 
