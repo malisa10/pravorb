@@ -75,5 +75,10 @@ public class HistoryService {
     public History getHistoryByTexts(@WebParam(name = "id") int id) {
         return ejbRef.getHistoryByTexts(id);
     }
+
+    @WebMethod(operationName = "getLastHistoryByActs")
+    public History getLastHistoryByActs(@WebParam(name = "id") int id) {
+        return ejbRef.getLastHistoryByActs(id);
+    }
     
 }

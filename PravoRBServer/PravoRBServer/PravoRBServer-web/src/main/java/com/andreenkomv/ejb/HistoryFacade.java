@@ -66,4 +66,16 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
         this.session.getTransaction().commit();
         return res;
     }
+
+    @Override
+    public History getLastHistoryByActs(int id) {
+        this.session.beginTransaction();
+        History res = (History)session.createSQLQuery("SELECT * "
+                + "FROM `last_acts` "
+                + "WHERE `last_acts`.`act`=:act")
+                .addEntity(History.class)
+                .setLong("act", id).uniqueResult();
+        this.session.getTransaction().commit();
+        return res;
+    }
 }

@@ -5,7 +5,7 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
-import com.andreenkomv.peavorbclient.helpers.HTMLHelper;
+import com.andreenkomv.pravorbclient.helpers.HTMLHelper;
 import com.andreenkomv.pravorbclient.bean.UserBeanLocal;
 import com.andreenkomv.ws.Users;
 import java.io.IOException;

@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.andreenkomv.peavorbclient.helpers;
+package com.andreenkomv.pravorbclient.helpers;
 
 import com.andreenkomv.ws.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.TreeMap;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  *
@@ -89,7 +94,7 @@ public class HTMLHelper {
 
             Map<String, String> showMap = new HashMap<>();
             showMap.put("action", "show");
-            showMap.put("history", history.getId().toString());
+            showMap.put("act", history.getActs().getId().toString());
             String td ="<b>"+ getCustomHref(host, "act", showMap, history.getTexts().getName())+"</b>";
             
             Map<String, String> historyMap = new HashMap<>();
@@ -102,8 +107,7 @@ public class HTMLHelper {
                 Map<String, String> editMap = new HashMap<>();
                 editMap.put("action", "addedition");
                 editMap.put("act", history.getActs().getId().toString());
-                editMap.put("oldtext", history.getTexts().getId().toString());
-                td += getCustomHref(host, "text", editMap, "Редактировать");                
+                td += getCustomHref(host, "act", editMap, "Редактировать");                
                 td += " | ";
                 td += getDeleteLink(host, "act", history.getActs().getId());
                 td +=")";
@@ -219,5 +223,16 @@ public class HTMLHelper {
             result.put(entry.getKey(), entry.getValue());
         }
         return result;
+    }
+            
+    public static String XMLGregorianCalendarToString(XMLGregorianCalendar date) {
+        /*SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        String sdate = sdf.format(date.toGregorianCalendar(TimeZone.getTimeZone("GMT+3"),new Locale("rus"),date).getTime());
+        return sdate;*/
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        GregorianCalendar gc = date.toGregorianCalendar();
+        String sdate = sdf.format(gc.getTime());
+        System.out.println(sdate);
+        return sdate;
     }
 }

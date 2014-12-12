@@ -6,7 +6,6 @@
 package com.andreenkomv.pravorbclient.bean;
 
 import com.andreenkomv.ws.*;
-import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,10 +13,8 @@ import javax.ejb.Local;
  * @author Admin
  */
 @Local
-public interface HistoryBeanLocal {
-
-    public History create(Acts act, Texts text, Users user);
-    public List<History> getLastActsHistoryByPart(int id);
-    public History getHistory(int id);
-    public History getLastHistoryByActs(int id);
+public interface ActBeanLocal {
+    public Acts create(Parts part);
+    public Acts get(int id);
+    public void delete(int id);
 }

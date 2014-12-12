@@ -28,11 +28,12 @@ public abstract class AbstractFacade<T> {
     public T create(T entity) {
         try {
             session.clear();
-            this.session.beginTransaction();
+            session.beginTransaction();
             session.save(entity);
-            this.session.getTransaction().commit();
+            session.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            session.getTransaction().rollback();
+            throw e;
         } finally {
             session.clear();
         }
@@ -46,7 +47,8 @@ public abstract class AbstractFacade<T> {
             session.update(entity);
             this.session.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            session.getTransaction().rollback();
+            throw e;
         } finally {
             session.clear();
         }
@@ -59,7 +61,8 @@ public abstract class AbstractFacade<T> {
             session.delete(entity);
             this.session.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            session.getTransaction().rollback();
+            throw e;
         } finally {
             session.clear();
         }
@@ -72,7 +75,8 @@ public abstract class AbstractFacade<T> {
             res = (T)session.get(entityClass, id); 
             this.session.getTransaction().commit();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            session.getTransaction().rollback();
+            throw e;
         }
         return res;
     }

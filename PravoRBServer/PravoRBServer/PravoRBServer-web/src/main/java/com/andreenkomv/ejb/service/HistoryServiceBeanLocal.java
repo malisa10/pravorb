@@ -26,4 +26,5 @@ public interface HistoryServiceBeanLocal {
     List<History> listHistoryByUser(int id);
     List<History> listLastActsHistoryByPart(int id);
     History getHistoryByTexts(int id);
+    public History getLastHistoryByActs(int id);
 }

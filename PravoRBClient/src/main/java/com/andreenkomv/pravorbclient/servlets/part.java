@@ -5,7 +5,7 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
-import com.andreenkomv.peavorbclient.helpers.HTMLHelper;
+import com.andreenkomv.pravorbclient.helpers.HTMLHelper;
 import com.andreenkomv.pravorbclient.bean.HistoryBeanLocal;
 import com.andreenkomv.pravorbclient.bean.PartBeanLocal;
 import com.andreenkomv.pravorbclient.bean.UserBeanLocal;
@@ -88,6 +88,15 @@ public class part extends HttpServlet {
             } else {
                 response.sendRedirect(request.getHeader("referer"));
             }
+        }  else if ((action != null) && action.equals("create") && userBean.isModeratorRights()) {
+            String id = request.getParameter("part");
+            int parent = 0;
+            if (id!=null) {
+                parent = Integer.valueOf(id);
+            }
+                List<Parts> parts = partBean.list();
+                request.setAttribute("parentPartSelect", HTMLHelper.getSelect("parent", HTMLHelper.getMapParts(parts), parent));
+                request.getRequestDispatcher("/part_create.jsp").forward(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }

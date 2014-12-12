@@ -31,4 +31,48 @@ public class HistoryBean implements HistoryBeanLocal {
         }
         return result;
     }
+
+    @Override
+    public History getHistory(int id) {
+      History result = null;
+        try { // Call Web Service Operation
+            HistoryService port = service.getHistoryServicePort();
+            // TODO process result here
+            result = port.getHistory(id);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }
+
+    @Override
+    public History getLastHistoryByActs(int id) {
+      History result = null;
+        try { // Call Web Service Operation
+            HistoryService port = service.getHistoryServicePort();
+            // TODO process result here
+            result = port.getLastHistoryByActs(id);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }
+
+    @Override
+    public History create(Acts act, Texts text, Users user) {
+        History result = null;
+        try { // Call Web Service Operation
+            HistoryService port = service.getHistoryServicePort();
+            // TODO initialize WS operation arguments here
+            History l = new History();
+            l.setActs(act);
+            l.setTexts(text);
+            l.setUsers(user);
+            // TODO process result here
+            result = port.createHistory(l);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }
 }

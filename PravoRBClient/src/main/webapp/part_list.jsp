@@ -11,7 +11,11 @@
         <mytag:ListTable rows="${rowsActs}"/>
     <% } %>
     <% if (editRights) {%>
-        <a class="btn btn-large btn-inverse" href="<%=host%>/part?action=create&part=<%=part%>">Создать раздел</a>
+        <% if (request.getAttribute("rowsActs")!=null) {%>
+            <a class="btn btn-large btn-inverse" href="<%=host%>/part?action=create&part=<%=part%>">Создать раздел</a>
+        <%} else {%> 
+            <a class="btn btn-large btn-inverse" href="<%=host%>/part?action=create">Создать раздел</a>
+        <%}%> 
     <%}%>   
     <% if (editRights&&(request.getAttribute("rowsActs")!=null)) {%>
     <a class="btn btn-large btn-inverse" href="<%=host%>/act?action=create&part=<%=part%>">Создать акт</a>

@@ -166,13 +166,13 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/HistoryService.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/HistoryService.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/PartsService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PartsService.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-HistoryService</id>
+                        <id>wsimport-generate-PartsService</id>
                         <phase>generate-sources</phase>
                     </execution>
                     <execution>
@@ -181,13 +181,13 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/HistoryService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/PartsService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PartsService.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/HistoryService.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-PartsService</id>
+                        <id>wsimport-generate-HistoryService</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

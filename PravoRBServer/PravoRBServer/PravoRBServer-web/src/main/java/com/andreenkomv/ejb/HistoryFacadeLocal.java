@@ -25,5 +25,6 @@ public interface HistoryFacadeLocal {
     List<History> listHistoryByActs(int id);
     List<History> listHistoryByUser(int id);
     List<History> listLastActsHistoryByPart(int id);
+    History getLastHistoryByActs(int id);
     History getHistoryByTexts(int id);
 }

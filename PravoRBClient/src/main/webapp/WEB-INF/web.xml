@@ -12,6 +12,10 @@
         <servlet-name>act</servlet-name>
         <servlet-class>com.andreenkomv.pravorbclient.servlets.act</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>history</servlet-name>
+        <servlet-class>com.andreenkomv.pravorbclient.servlets.history</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>favorites</servlet-name>
         <url-pattern>/favorites</url-pattern>
@@ -42,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>act</servlet-name>
         <url-pattern>/act</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>history</servlet-name>
+        <url-pattern>/history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
