@@ -120,9 +120,9 @@ public class HTMLHelper {
             td="";
             if (user!=null && user.getGroups().getId()<=3) {
                 if (!actBean.inFavorites(history.getActs().getId(), user.getId())) {
-                    td += "<a class='btn btn-success' href='"+host+"/favorites?action=create&act="+history.getActs().getId()+"' alt='В изранное'>+</a>";
+                    td += "<a class='btn btn-success btn-create-favorite' href='"+host+"/favorites?action=create&act="+history.getActs().getId()+"' alt='В изранное'>+ в избранное</a>";
                 } else {
-                    td += "<a class='btn btn-danger' href='"+host+"/favorites?action=delete&act="+history.getActs().getId()+"' alt='Из избранного'>-</a>";
+                    td += "<a class='btn btn-danger btn-delete-favorite' href='"+host+"/favorites?action=delete&act="+history.getActs().getId()+"' alt='Из избранного'>- из избранного</a>";
                 }
             }
             row.add(td);

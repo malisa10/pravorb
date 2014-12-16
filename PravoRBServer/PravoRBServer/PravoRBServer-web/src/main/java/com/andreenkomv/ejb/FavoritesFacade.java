@@ -8,6 +8,7 @@ package com.andreenkomv.ejb;
 import com.andreenkomv.hibernate.Acts;
 import com.andreenkomv.hibernate.Favorites;
 import com.andreenkomv.hibernate.Users;
+import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.criterion.Restrictions;
@@ -45,5 +46,27 @@ public class FavoritesFacade  extends AbstractFacade<Favorites> implements Favor
                 .uniqueResult();
         this.session.getTransaction().commit();
         return res;
+    }
+    
+    @Override
+    public int createByUserAndAct(int user, int act) {
+        this.session.beginTransaction();
+        session.createSQLQuery("INSERT INTO `favorites` (`favorites`.`user`, `favorites`.`act`) VALUES (:user, :act)")
+                .setLong("user", user)
+                .setLong("act", act)
+                .executeUpdate();
+        Integer lastid = ((BigInteger)(session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult())).intValue();
+        this.session.getTransaction().commit();
+        return lastid;
+    }
+    
+    @Override
+    public void deleteByUserAndAct(int user, int act) {
+        this.session.beginTransaction();
+        session.createSQLQuery("DELETE FROM `favorites` WHERE `favorites`.`user`=:user AND `favorites`.`act`=:act")
+                .setLong("user", user)
+                .setLong("act", act)
+                .executeUpdate();
+        this.session.getTransaction().commit();
     }
 }

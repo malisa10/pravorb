@@ -5,7 +5,9 @@
  */
 package com.andreenkomv.pravorbclient.servlets;
 
+import com.andreenkomv.pravorbclient.bean.ActBeanLocal;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Honaht
  */
 public class index extends HttpServlet {
-
+    @EJB
+    ActBeanLocal actBean;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,6 +31,7 @@ public class index extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("countActs", actBean.count());
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

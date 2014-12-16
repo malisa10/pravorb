@@ -94,4 +94,18 @@ public class HistoryFacade extends AbstractFacade<History>  implements HistoryFa
         this.session.getTransaction().commit();
         return res;
     }
+    
+    @Override 
+    public List<History> listHistoryBySearch(String search) {
+        session.clear();
+        this.session.beginTransaction();
+        List<History> res = (List<History>)session.createSQLQuery("SELECT * "
+                + "FROM `history` "
+                + "LEFT JOIN `texts` ON `texts`.`id`=`history`.`text` "
+                + "WHERE `texts`.`name` LIKE :search ;")
+                .addEntity(History.class)
+                .setString("search", "%"+search+"%").list();
+        this.session.getTransaction().commit();
+        return res;
+    }
 }

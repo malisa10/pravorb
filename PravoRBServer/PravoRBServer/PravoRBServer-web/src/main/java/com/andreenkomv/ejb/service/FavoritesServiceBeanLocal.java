@@ -24,4 +24,6 @@ public interface FavoritesServiceBeanLocal {
     
     public List<Favorites> listFavoritesByUser(int user);
     public Favorites getByUserAndAct(int user, int act);
+    public int createByUserAndAct(int user, int act);
+    public void deleteByUserAndAct(int user, int act);
 }

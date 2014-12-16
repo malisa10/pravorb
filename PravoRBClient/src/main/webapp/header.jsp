@@ -8,18 +8,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content=""/>
         <meta name="author" content=""/>
-        <title><%=host%></title>               
-        <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-        <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+        <title>Реестр правовых актов РБ | <%=host%></title>               
+        <link href="<%=host%>/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=host%>/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="<%=host%>/css/jquery-te-1.4.0.css" rel="stylesheet">
+        <link href="<%=host%>/css/myStyle.css" rel="stylesheet">
     </head>
     <body>
-        <div id="all">
+        <div id="all" class="block-shadow">
             <div id="header">
+                <div id="search">
+                    <form action="<%=host%>/history?action=search" method="post">
+                        <input type="search" name="searchstring" placeholder="Поиск..." />
+                    </form>
+                </div>
                 <center><h3 class="muted"><a href="<%=host%>">Реестр правовых актов РБ</a></h3></center>
                 <hr/>
                 <div class="userblock">
                     <jsp:include page="headeruserpanel.jsp" />
                 </div>
+                <hr/>
             </div>
-            <hr/>
             <div id="content">

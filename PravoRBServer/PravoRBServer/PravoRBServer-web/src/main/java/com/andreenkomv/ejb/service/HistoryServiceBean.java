@@ -79,4 +79,9 @@ public class HistoryServiceBean implements HistoryServiceBeanLocal {
     public List<History> listLastActsHistoryByUserFavorites(int id) {
         return HistoryFacade.listLastActsHistoryByUserFavorites(id);
     }
+    
+    @Override
+    public List<History> listHistoryBySearch(String search) {
+        return HistoryFacade.listHistoryBySearch(search);
+    }
 }

@@ -4,9 +4,15 @@
 
 <xs:element name="countFavoritesResponse" type="tns:countFavoritesResponse"/>
 
+<xs:element name="createByUserAndAct" type="tns:createByUserAndAct"/>
+
+<xs:element name="createByUserAndActResponse" type="tns:createByUserAndActResponse"/>
+
 <xs:element name="createFavorites" type="tns:createFavorites"/>
 
 <xs:element name="createFavoritesResponse" type="tns:createFavoritesResponse"/>
+
+<xs:element name="deleteByUserAndAct" type="tns:deleteByUserAndAct"/>
 
 <xs:element name="deleteFavorites" type="tns:deleteFavorites"/>
 
@@ -101,12 +107,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="deleteFavorites">
-<xs:sequence>
-<xs:element name="l" type="tns:favorites" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="listFavoritesByUser">
 <xs:sequence>
 <xs:element name="user" type="xs:int"/>
@@ -116,6 +116,19 @@
 <xs:complexType name="listFavoritesByUserResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:favorites" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteFavorites">
+<xs:sequence>
+<xs:element name="l" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteByUserAndAct">
+<xs:sequence>
+<xs:element name="user" type="xs:int"/>
+<xs:element name="act" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -139,6 +152,19 @@
 <xs:complexType name="getByUserAndActResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:favorites" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createByUserAndAct">
+<xs:sequence>
+<xs:element name="user" type="xs:int"/>
+<xs:element name="act" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createByUserAndActResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 

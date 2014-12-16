@@ -54,20 +54,23 @@ public class favorites extends HttpServlet {
         if (action!=null && action.equals("create") && userBean.isAuth()) {
             String act=request.getParameter("act");
             if (act!=null) {                
-                favoriteBean.create(actBean.get(Integer.valueOf(act)), userBean.getUser());
-                response.sendRedirect(request.getContextPath()+"/favorites?action=list");
+                favoriteBean.createByUserAndAct(userBean.getUser().getId(), Integer.valueOf(act));
+                //response.sendRedirect(request.getContextPath()+"/favorites?action=list");
+                response.getWriter().write("1");
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
         } else if (action!=null && action.equals("delete") && userBean.isAuth()) {
             String act=request.getParameter("act");
             if (act!=null) {                
-                favoriteBean.delete(actBean.get(Integer.valueOf(act)), userBean.getUser());
-                response.sendRedirect(request.getContextPath()+"/favorites?action=list");
+                favoriteBean.deleteByUserAndAct(userBean.getUser().getId(), Integer.valueOf(act));
+                //response.sendRedirect(request.getContextPath()+"/favorites?action=list");
+                response.getWriter().write("1");
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }        
-        } else if (action!=null && action.equals("list") && userBean.isAuth()) {            
+        } else if (action!=null && action.equals("list") && userBean.isAuth()) {       
+            historyBean.getLastActsHistoryByUserFavorites(userBean.getUser().getId());
             List<History> histories = historyBean.getLastActsHistoryByUserFavorites(userBean.getUser().getId()); 
             request.setAttribute("rowsActs", HTMLHelper.getActsListValues(histories, request.getContextPath(),userBean.getUser().getGroups().getId(), actBean, userBean.getUser()));
             request.getRequestDispatcher("/favorites_list.jsp").forward(request, response);

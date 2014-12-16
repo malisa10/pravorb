@@ -4,17 +4,23 @@
 <xsd:import namespace="http://ws.andreenkomv.com/" schemaLocation="http://localhost:8080/PravoRBServer-web/FavoritesService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="listFavoritesByUser">
+<part name="parameters" element="tns:listFavoritesByUser"/>
+</message>
+<message name="listFavoritesByUserResponse">
+<part name="parameters" element="tns:listFavoritesByUserResponse"/>
+</message>
+<message name="createByUserAndAct">
+<part name="parameters" element="tns:createByUserAndAct"/>
+</message>
+<message name="createByUserAndActResponse">
+<part name="parameters" element="tns:createByUserAndActResponse"/>
+</message>
+<message name="deleteByUserAndAct">
+<part name="parameters" element="tns:deleteByUserAndAct"/>
+</message>
 <message name="editFavorites">
 <part name="parameters" element="tns:editFavorites"/>
-</message>
-<message name="countFavorites">
-<part name="parameters" element="tns:countFavorites"/>
-</message>
-<message name="countFavoritesResponse">
-<part name="parameters" element="tns:countFavoritesResponse"/>
-</message>
-<message name="deleteFavorites">
-<part name="parameters" element="tns:deleteFavorites"/>
 </message>
 <message name="getFavorites">
 <part name="parameters" element="tns:getFavorites"/>
@@ -34,28 +40,35 @@
 <message name="listFavoritesResponse">
 <part name="parameters" element="tns:listFavoritesResponse"/>
 </message>
+<message name="countFavorites">
+<part name="parameters" element="tns:countFavorites"/>
+</message>
+<message name="countFavoritesResponse">
+<part name="parameters" element="tns:countFavoritesResponse"/>
+</message>
+<message name="deleteFavorites">
+<part name="parameters" element="tns:deleteFavorites"/>
+</message>
 <message name="getByUserAndAct">
 <part name="parameters" element="tns:getByUserAndAct"/>
 </message>
 <message name="getByUserAndActResponse">
 <part name="parameters" element="tns:getByUserAndActResponse"/>
 </message>
-<message name="listFavoritesByUser">
-<part name="parameters" element="tns:listFavoritesByUser"/>
-</message>
-<message name="listFavoritesByUserResponse">
-<part name="parameters" element="tns:listFavoritesByUserResponse"/>
-</message>
 <portType name="FavoritesService">
+<operation name="listFavoritesByUser">
+<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesByUserRequest" message="tns:listFavoritesByUser"/>
+<output wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesByUserResponse" message="tns:listFavoritesByUserResponse"/>
+</operation>
+<operation name="createByUserAndAct">
+<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/createByUserAndActRequest" message="tns:createByUserAndAct"/>
+<output wsam:Action="http://ws.andreenkomv.com/FavoritesService/createByUserAndActResponse" message="tns:createByUserAndActResponse"/>
+</operation>
+<operation name="deleteByUserAndAct">
+<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/deleteByUserAndAct" message="tns:deleteByUserAndAct"/>
+</operation>
 <operation name="editFavorites">
 <input wsam:Action="http://ws.andreenkomv.com/FavoritesService/editFavorites" message="tns:editFavorites"/>
-</operation>
-<operation name="countFavorites">
-<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/countFavoritesRequest" message="tns:countFavorites"/>
-<output wsam:Action="http://ws.andreenkomv.com/FavoritesService/countFavoritesResponse" message="tns:countFavoritesResponse"/>
-</operation>
-<operation name="deleteFavorites">
-<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/deleteFavorites" message="tns:deleteFavorites"/>
 </operation>
 <operation name="getFavorites">
 <input wsam:Action="http://ws.andreenkomv.com/FavoritesService/getFavoritesRequest" message="tns:getFavorites"/>
@@ -69,24 +82,21 @@
 <input wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesRequest" message="tns:listFavorites"/>
 <output wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesResponse" message="tns:listFavoritesResponse"/>
 </operation>
+<operation name="countFavorites">
+<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/countFavoritesRequest" message="tns:countFavorites"/>
+<output wsam:Action="http://ws.andreenkomv.com/FavoritesService/countFavoritesResponse" message="tns:countFavoritesResponse"/>
+</operation>
+<operation name="deleteFavorites">
+<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/deleteFavorites" message="tns:deleteFavorites"/>
+</operation>
 <operation name="getByUserAndAct">
 <input wsam:Action="http://ws.andreenkomv.com/FavoritesService/getByUserAndActRequest" message="tns:getByUserAndAct"/>
 <output wsam:Action="http://ws.andreenkomv.com/FavoritesService/getByUserAndActResponse" message="tns:getByUserAndActResponse"/>
 </operation>
-<operation name="listFavoritesByUser">
-<input wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesByUserRequest" message="tns:listFavoritesByUser"/>
-<output wsam:Action="http://ws.andreenkomv.com/FavoritesService/listFavoritesByUserResponse" message="tns:listFavoritesByUserResponse"/>
-</operation>
 </portType>
 <binding name="FavoritesServicePortBinding" type="tns:FavoritesService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="editFavorites">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-</operation>
-<operation name="countFavorites">
+<operation name="listFavoritesByUser">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -95,7 +105,22 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="deleteFavorites">
+<operation name="createByUserAndAct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="deleteByUserAndAct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
+<operation name="editFavorites">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -128,7 +153,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getByUserAndAct">
+<operation name="countFavorites">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -137,7 +162,13 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listFavoritesByUser">
+<operation name="deleteFavorites">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
+<operation name="getByUserAndAct">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

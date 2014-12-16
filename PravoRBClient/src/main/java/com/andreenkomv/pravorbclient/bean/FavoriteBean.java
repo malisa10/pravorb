@@ -20,28 +20,20 @@ public class FavoriteBean implements FavoriteBeanLocal {
     private FavoritesService_Service service;
     
     @Override
-    public void create(Acts act, Users user) {        
+    public void createByUserAndAct(int user, int act) {        
         try { // Call Web Service Operation
             FavoritesService port = service.getFavoritesServicePort();
-            // TODO initialize WS operation arguments here
-            Favorites l = new Favorites();
-            l.setActs(act);
-            l.setUsers(user);
-            // TODO process result here
-            port.createFavorites(l);
+            port.createByUserAndAct(user, act);
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
     }
 
     @Override
-    public void delete(Acts act, Users user) {
+    public void deleteByUserAndAct(int user, int act) {
         try { // Call Web Service Operation
             FavoritesService port = service.getFavoritesServicePort();
-            // TODO initialize WS operation arguments here
-            Favorites l = port.getByUserAndAct(user.getId(), act.getId());
-            // TODO process result here
-            port.deleteFavorites(l);
+            port.deleteByUserAndAct(user, act);
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }

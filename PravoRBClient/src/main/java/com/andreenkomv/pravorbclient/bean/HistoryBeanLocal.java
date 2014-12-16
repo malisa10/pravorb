@@ -23,4 +23,5 @@ public interface HistoryBeanLocal {
     public List<History> listHistoryByActs(int id);
     public History getHistory(int id);
     public History getLastHistoryByActs(int id);
+    public List<History> listHistoryBySearch(String search);
 }

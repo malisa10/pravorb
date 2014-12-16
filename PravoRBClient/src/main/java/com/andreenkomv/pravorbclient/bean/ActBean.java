@@ -70,5 +70,16 @@ public class ActBean implements ActBeanLocal {
         return result;
     }
     
+    @Override
+    public int count() {
+        int res = 0;
+        try { // Call Web Service Operation
+            ActsService port = service.getActsServicePort();
+            res = port.countActs();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return res;
+    }
     
 }

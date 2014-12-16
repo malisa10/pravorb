@@ -136,21 +136,6 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/PravoRBServer-web/FavoritesService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.andreenkomv.ws</packageName>
-                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/FavoritesService.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-FavoritesService</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
                                 <wsdlFile>localhost_8080/PravoRBServer-web/PartsService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.andreenkomv.ws</packageName>
@@ -173,6 +158,21 @@
                             <staleFile>${project.build.directory}/jaxws/stale/ActsService.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-ActsService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/PravoRBServer-web/FavoritesService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.andreenkomv.ws</packageName>
+                            <wsdlLocation>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/FavoritesService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-FavoritesService</id>
                         <phase>generate-sources</phase>
                     </execution>
                     <execution>

@@ -59,4 +59,14 @@ public class FavoritesServiceBean implements FavoritesServiceBeanLocal {
     public Favorites getByUserAndAct(int user, int act) {
         return FavoritesFacade.getByUserAndAct(user, act);
     }
+    
+    @Override
+    public int createByUserAndAct(int user, int act) {
+        return FavoritesFacade.createByUserAndAct(user, act);
+    }
+    
+    @Override
+    public void deleteByUserAndAct(int user, int act) {
+        FavoritesFacade.deleteByUserAndAct(user, act);
+    }
 }

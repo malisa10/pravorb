@@ -28,4 +28,5 @@ public interface HistoryFacadeLocal {
     List<History> listLastActsHistoryByUserFavorites(int id);
     History getLastHistoryByActs(int id);
     History getHistoryByTexts(int id);
+    public List<History> listHistoryBySearch(String search);
 }

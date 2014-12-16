@@ -24,5 +24,6 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
         <org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>js/libs</org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_HistoryService>http://localhost:8080/PravoRBServer-web/HistoryService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_HistoryService>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_FavoritesService>http://localhost:8080/PravoRBServer-web/FavoritesService?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_FavoritesService>
     </properties>
 </project-shared-configuration>

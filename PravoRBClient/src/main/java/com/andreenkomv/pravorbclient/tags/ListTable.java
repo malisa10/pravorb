@@ -20,7 +20,7 @@ public class ListTable extends TagSupport {
     @Override
     public int doStartTag() {
         try {
-            pageContext.getOut().write("<table class='table'>");
+            pageContext.getOut().write("<table class='table table-bordered table-hover'>");
             if (headers!=null) {
                 pageContext.getOut().write("<tr>");
                 for (String header: headers) {

@@ -94,7 +94,9 @@ public class HistoryBean implements HistoryBeanLocal {
         try { // Call Web Service Operation
             HistoryService port = service.getHistoryServicePort();
             History history = port.getHistory(id);
-            port.deleteHistory(history);
+            if (listHistoryByActs(history.getActs().getId()).size()>1) {
+                port.deleteHistory(history);
+            }
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -107,6 +109,19 @@ public class HistoryBean implements HistoryBeanLocal {
             HistoryService port = service.getHistoryServicePort();
             // TODO process result here
             result = port.listLastActsHistoryByUserFavorites(id);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }
+    
+    @Override
+    public List<History> listHistoryBySearch(String search) {
+        List<History> result = null;
+        try { // Call Web Service Operation
+            HistoryService port = service.getHistoryServicePort();
+            // TODO process result here
+            result = port.listHistoryBySearch(search);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }

@@ -15,6 +15,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface FavoriteBeanLocal {
-    public void create(Acts act, Users user);
-    public void delete(Acts act, Users user);
+    public void createByUserAndAct(int user, int act);
+    public void deleteByUserAndAct(int user, int act);
 }

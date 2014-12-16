@@ -17,5 +17,6 @@ public interface ActBeanLocal {
     public Acts create(Parts part);
     public Acts get(int id);
     public void delete(int id);
+    public int count();
     public boolean inFavorites(int act, int user);
 }

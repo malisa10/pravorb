@@ -98,7 +98,20 @@ public class history extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String action = request.getParameter("action");
+        userBean.setSession(request.getSession());
+        if ((action != null) && (action.equals("search"))) {
+            String _searchstring = request.getParameter("searchstring");
+                List<History> histories = historyBean.listHistoryBySearch(_searchstring);
+                int access = 999;
+                if (userBean.isAuth()) {
+                    access = userBean.getUser().getGroups().getId();
+                } else {
+                    access = 4;
+                }
+                request.setAttribute("histories", HTMLHelper.getHistoryListValues(histories, request.getContextPath(), access));
+                request.getRequestDispatcher("/history_list.jsp").forward(request, response);
+        }
     }
 
     /**

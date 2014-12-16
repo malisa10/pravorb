@@ -1,0 +1,86 @@
+#all {
+    position: relative;
+    width:1000px;
+    margin: 0 auto;
+}
+
+#all hr {
+    border: none; /* Убираем границу для браузера Firefox */
+    color: red; /* Цвет линии для остальных браузеров */
+    background-color: #cfcfcf; /* Цвет линии для браузера Firefox и Opera */
+    height: 1px; /* Толщина линии */
+    margin:10px 0;
+}
+
+#header {
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    margin-top:10px;
+}
+
+#header .userpanel {
+    padding:0 10px;
+}
+
+#header .logout {
+    float:right;
+}
+
+#content {
+    position: relative;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#content table.table tr th {
+    text-align:center;
+}
+
+#footer {
+    position: relative;
+    padding: 0 10px 10px 10px;
+    margin: 0 0 10px 0;
+}
+
+#footer #copyright {
+    position:relative;
+    text-align: center;
+    width:100%;
+}
+
+.block-shadow {
+        box-shadow:
+        0 1px 4px rgba(0, 0, 0, .3),
+        -23px 0 20px -23px rgba(0, 0, 0, .8),
+        23px 0 20px -23px rgba(0, 0, 0, .8),
+        0 0 40px rgba(0, 0, 0, .1) inset;
+}
+
+.form-middle {
+    width:700px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form-middle form input
+{
+    width:98%;
+}
+
+.form-middle form select, .form-middle form input[type="submit"]
+{
+    width:100%;
+}
+
+#search {
+    position:absolute;
+    right:10px;
+    margin-top:10px;
+}
+#search input {
+    width:250px;
+}
+
+.form-middle .form-user-info .btn {
+    width: 200px;
+}

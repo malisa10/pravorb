@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `FK_favorites_users` (`user`),
   CONSTRAINT `FK_favorites_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы ss_pravorb.favorites: ~0 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.favorites: ~1 rows (приблизительно)
 DELETE FROM `favorites`;
 /*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
 INSERT INTO `favorites` (`id`, `act`, `user`) VALUES
@@ -85,14 +85,12 @@ CREATE TABLE IF NOT EXISTS `history` (
   CONSTRAINT `FK_history_acts` FOREIGN KEY (`act`) REFERENCES `acts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_history_texts` FOREIGN KEY (`text`) REFERENCES `texts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_history_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы ss_pravorb.history: ~6 rows (приблизительно)
 DELETE FROM `history`;
 /*!40000 ALTER TABLE `history` DISABLE KEYS */;
 INSERT INTO `history` (`id`, `act`, `text`, `user`, `time_edit`) VALUES
-	(2, 1, 1, 1, '2014-11-28 17:00:28'),
-	(3, 1, 2, 1, '2014-12-11 03:26:55'),
 	(10, 5, 13, 1, '2014-12-12 07:33:39'),
 	(11, 5, 14, 1, '2014-12-12 07:35:06'),
 	(12, 5, 15, 1, '2014-12-12 08:03:26'),
@@ -126,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `parts` (
   `parent` int(10) unsigned NOT NULL DEFAULT '0',
   `name` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='Разделы Национального реестра правовых актов РБ';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='Разделы Национального реестра правовых актов РБ';
 
 -- Дамп данных таблицы ss_pravorb.parts: ~27 rows (приблизительно)
 DELETE FROM `parts`;
@@ -264,14 +262,12 @@ CREATE TABLE IF NOT EXISTS `texts` (
   `name` text NOT NULL,
   `text` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Правовые акты\r\nСтатус: 1 - создан, 0 - для отката';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='Правовые акты\r\nСтатус: 1 - создан, 0 - для отката';
 
--- Дамп данных таблицы ss_pravorb.texts: ~7 rows (приблизительно)
+-- Дамп данных таблицы ss_pravorb.texts: ~6 rows (приблизительно)
 DELETE FROM `texts`;
 /*!40000 ALTER TABLE `texts` DISABLE KEYS */;
 INSERT INTO `texts` (`id`, `name`, `text`) VALUES
-	(1, 'Текст конституции РБ', 'КОНСТИТУЦИЯ ЗДЕСЬ!'),
-	(2, 'Вторая редакция конст', 'ЗДЕСЬ ЗДЕСЬ!!!'),
 	(12, 'Новая статья', 'Статья'),
 	(13, 'Вторая статья первая редакция', 'ывывпывп'),
 	(14, 'Вторая статья вторая редакция', 'вторая'),
@@ -296,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `login` (`login`),
   KEY `FK_users_groups` (`group`),
   CONSTRAINT `FK_users_groups` FOREIGN KEY (`group`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы ss_pravorb.users: ~3 rows (приблизительно)
 DELETE FROM `users`;

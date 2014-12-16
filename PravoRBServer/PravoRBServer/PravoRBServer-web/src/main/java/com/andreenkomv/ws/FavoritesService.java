@@ -16,7 +16,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author Admin
+ * @author Honaht
  */
 @WebService(serviceName = "FavoritesService")
 public class FavoritesService {
@@ -64,6 +64,17 @@ public class FavoritesService {
     @WebMethod(operationName = "getByUserAndAct")
     public Favorites getByUserAndAct(@WebParam(name = "user") int user, @WebParam(name = "act") int act) {
         return ejbRef.getByUserAndAct(user, act);
+    }
+
+    @WebMethod(operationName = "createByUserAndAct")
+    public int createByUserAndAct(@WebParam(name = "user") int user, @WebParam(name = "act") int act) {
+        return ejbRef.createByUserAndAct(user, act);
+    }
+
+    @WebMethod(operationName = "deleteByUserAndAct")
+    @Oneway
+    public void deleteByUserAndAct(@WebParam(name = "user") int user, @WebParam(name = "act") int act) {
+        ejbRef.deleteByUserAndAct(user, act);
     }
     
 }
